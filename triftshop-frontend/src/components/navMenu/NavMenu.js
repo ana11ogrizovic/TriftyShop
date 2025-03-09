@@ -777,7 +777,7 @@ const NavMenu = () => {
           {isBuySellOpen && (
             <ul className="dropdown">
               <li className="dropdown-item">Forum</li>
-              <li className="dropdown-item">Usluge</li>
+              <li className="dropdown-item">Services</li>
             </ul>
           )}
         </li>
