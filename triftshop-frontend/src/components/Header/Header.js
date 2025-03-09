@@ -1,0 +1,231 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button, Toolbar, TextField, Menu, MenuItem } from '@mui/material';
+import './Header.css';
+import logo from '../../assets/logo/logo.png';
+import 'font-awesome/css/font-awesome.min.css';
+import NavMenu from '../navMenu/NavMenu';
+
+const Header = ({ isLoggedIn, userEmail, onLogout }) => {
+  const location = useLocation();
+  console.log("Current path:", location.pathname);
+
+
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElWomen, setAnchorElWomen] = React.useState(null);
+  const [clothingAnchorEl, setClothingAnchorEl] = React.useState(null);
+  const [accessoriesAnchorEl, setAccessoriesAnchorEl] = React.useState(null);
+  const [shoesAnchorEl, setShoesAnchorEl] = React.useState(null);
+  const [bagsAnchorEl, setBagsAnchorEl] = React.useState(null);
+  const [beautyAnchorEl, setBeautyAnchorEl] = React.useState(null);
+
+
+
+  const handleUserMenuOpen = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleUserMenuClose = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleWomenMenuOpen = (event) => {
+    setAnchorElWomen(event.currentTarget);
+  };
+
+  const handleWomenMenuClose = () => {
+    setAnchorElWomen(null);
+  };
+
+  const handleClothingMenuOpen = (event) => {
+    setClothingAnchorEl(event.currentTarget);
+  };
+
+  const handleClothingMenuClose = () => {
+    setClothingAnchorEl(null);
+  };
+
+  const handleAccessoriesMenuOpen = (event) => {
+    setAccessoriesAnchorEl(event.currentTarget);
+  };
+
+  const handleAccessoriesMenuClose = () => {
+    setAccessoriesAnchorEl(null);
+  };
+
+
+  const handleShoesMenuOpen = (event) => {
+    setShoesAnchorEl(event.currentTarget);
+  };
+
+  const handleShoesMenuClose = () => {
+    setShoesAnchorEl(null);
+  };
+
+  const handleBagsMenuOpen = (event) => {
+    setBagsAnchorEl(event.currentTarget);
+  };
+
+  const handleBagsMenuClose = () => {
+    setBagsAnchorEl(null);
+  };
+
+  const handleBeautyMenuOpen = (event) => {
+    setBeautyAnchorEl(event.currentTarget);
+  };
+
+  const handleBeautyMenuClose = () => {
+    setBeautyAnchorEl(null);
+  };
+
+
+  const isUserPanelPage = location.pathname.includes('/userpanel');
+
+  return (
+    <header>
+      <div style={{ backgroundColor: '#FDF6FA', padding: '10px', display: 'flex' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+          <a href="https://www.facebook.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px', marginLeft: '3%' }}>
+            <i className="fa fa-facebook-square" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
+            <i className="fa fa-instagram" aria-hidden="true" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+          </a>
+          <a href="https://www.snapchat.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
+            <i className="fa fa-pinterest" aria-hidden="true" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
+            <i className="fa fa-twitter-square" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+          </a>
+        </div>
+
+        <nav>
+          <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex' }}>
+            {isLoggedIn && (
+              <li style={{ marginRight: '10px' }}>
+                <Button
+                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '4px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase' }}
+                  onClick={handleUserMenuOpen}
+                >
+                  {userEmail}
+                  <i className="fa fa-caret-down" aria-hidden="true" style={{ fontSize: '14px', marginLeft: '5px' }}></i>
+                </Button>
+                <Menu
+                  anchorEl={anchorElUser}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleUserMenuClose}
+                >
+                  <MenuItem onClick={handleUserMenuClose}>
+                    <Link to="/editprofile" style={{ textDecoration: 'none', color: 'inherit', width: '180px' }}>
+                      Edit Profile
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={onLogout} style={{ color: 'red' }}>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </li>
+            )}
+            {!isLoggedIn && !isUserPanelPage && (
+              <>
+                <li >
+                  <Link to="/login" style={{ textDecoration: 'none', color: '#555', marginRight: '10px' }}>
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup" style={{ textDecoration: 'none', color: '#555', marginRight: '5px', marginLeft: '4px' }}>
+                    Signup
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Glavni Toolbar sa logoom i pretraživačem */}
+      <Toolbar style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#FDF6FA' }}>
+        <div style={{ flex: 1, marginLeft: '2%' }}>
+          <img src={logo} alt="Logo" style={{ height: '60px', marginTop: '1%', backgroundColor: 'white' }} />
+        </div>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <TextField
+            label="Search"
+            variant="outlined"
+            size="small"
+            style={{ marginRight: '0', width: '250px', marginLeft: '2%' }}
+          />
+          <div>
+            {isLoggedIn && (
+              <Link
+                to="/cart"
+                style={{
+                  fontSize: '25px',
+                  marginLeft: '20px',
+                  marginRight: '16px',
+                  textTransform: 'lowercase',
+                  color: 'black'
+                }}
+              >
+                <i
+                  className="far fa-user"
+                  style={{
+                    transition: 'color 0.3s ease, fill 0.3s ease',
+                  }}
+                ></i>
+              </Link>
+            )}
+          </div>
+          <div>
+            {isLoggedIn && (
+              <Link
+                to="/cart"
+                style={{
+                  fontSize: '25px',
+                  marginLeft: '5%',
+                  marginRight: '10px',
+                  textTransform: 'lowercase',
+                }}
+              >
+                <i
+                  className="far fa-heart"
+                  style={{
+                    transition: 'color 0.3s ease, fill 0.3s ease',
+                  }}
+                ></i>
+              </Link>
+            )}
+          </div>
+
+        </div>
+      </Toolbar>
+
+      {/* Donji Toolbar sa navigacionim linkom */}
+      <Toolbar className="bottom-toolbar">
+        <NavMenu
+          anchorEl={anchorElWomen}
+          handleMenuOpen={handleWomenMenuOpen}
+          handleMenuClose={handleWomenMenuClose}
+          clothingAnchorEl={clothingAnchorEl}
+          accessoriesAnchorEl={accessoriesAnchorEl}
+          shoesAnchorEl={shoesAnchorEl}
+          handleClothingMenuOpen={handleClothingMenuOpen}
+          handleClothingMenuClose={handleClothingMenuClose}
+          handleAccessoriesMenuOpen={handleAccessoriesMenuOpen}
+          handleAccessoriesMenuClose={handleAccessoriesMenuClose}
+          handleShoesMenuOpen={handleShoesMenuOpen}
+          handleShoesMenuClose={handleShoesMenuClose}
+          bagsAnchorEl={bagsAnchorEl}
+          handleBagsMenuOpen={handleBagsMenuOpen}
+          handleBagsMenuClose={handleBagsMenuClose}
+          beautyAnchorEl={beautyAnchorEl}
+          handleBeautyMenuOpen={handleBeautyMenuOpen}
+          handleBeautyMenuClose={handleBeautyMenuClose}
+        />
+      </Toolbar>
+    </header>
+  );
+};
+
+export default Header;

@@ -1,0 +1,39 @@
+.bottom-toolbar {
+  width: 98.2%;
+  display: flex;
+  justify-content: center; /* Centriranje sadržaja */
+  align-items: center; /* Vertikalno centriranje */
+  border-top: 1px solid rgba(192, 191, 191, 0.694);
+  border-bottom: 1px solid rgba(192, 191, 191, 0.694);
+  background-color: #FDF6FA;
+}
+
+/* Stil za link unutar bottom-toolbar */
+.bottom-toolbar a {
+  text-decoration: none;
+  color: #221202d1;
+  font-size: 14px; /* Manja veličina fonta */
+  line-height: 30px; /* Osiguranje da tekst bude vertikalno centriran */
+}
+
+.MuiToolbar-root {
+  min-height: auto !important;
+  padding: 5px 16px !important;
+}
+
+.far.fa-heart {
+  color: black; /* Podrazumevana boja srca */
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.far.fa-heart:hover {
+  color: rgb(238, 50, 160); /* Srce postaje crveno kada se hoveruje */
+}
+
+.far.fa-user:hover {
+  color: rgb(238, 50, 160); /* Srce postaje crveno kada se hoveruje */
+}
+
+
+
