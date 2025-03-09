@@ -1,0 +1,62 @@
+.nav-menu {
+    position: relative;
+    background-color: #FDF6FA;
+    padding: 10px 20px;
+  }
+  
+  .nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-menu > ul > li {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .menu-item,
+  .dropdown-item {
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
+  
+  .dropdown-item {
+    display: block;
+    padding: 8px 15px;
+  }
+  
+  .menu-item:hover,
+  .dropdown-item:hover {
+    color: #007bff;
+    background-color: #f8f9fa; /* Suptilna pozadina pri hoveru */
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1000;
+    min-width: 200px;
+  }
+  
+  .sub-dropdown {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+  
