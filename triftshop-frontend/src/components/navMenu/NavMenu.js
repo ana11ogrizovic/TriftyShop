@@ -45,13 +45,19 @@ const NavMenu = () => {
   const [isPetHealthOpen, setPetHealthOpen] = useState(false);
   const [isPetTravelOpen, setPetTravelOpen] = useState(false);
   const [isPetTrainingOpen, setPetTrainingOpen] = useState(false);
-
+  const [isHomeOpen, setHomeOpen] = useState(false);
 
 
 
   return (
     <nav className="nav-menu">
       <ul>
+      <li
+          onMouseEnter={() => setHomeOpen(true)}
+          onMouseLeave={() => setHomeOpen(false)}
+        >
+          <span className="menu-item">Home</span>
+        </li>
         <li
 
           onMouseEnter={() => setWomenOpen(true)}
