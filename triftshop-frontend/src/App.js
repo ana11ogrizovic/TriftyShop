@@ -38,7 +38,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/userpanel" element={<UserPanel onLogout={handleLogout} />} />
         <Route path="/editprofile" element={<EditProfile />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />

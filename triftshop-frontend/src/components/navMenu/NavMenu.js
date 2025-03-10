@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./NavMenu.css";
+import { Link } from "react-router-dom";
+
 
 const NavMenu = () => {
   const [isWomenOpen, setWomenOpen] = useState(false);
@@ -56,14 +58,15 @@ const NavMenu = () => {
           onMouseEnter={() => setHomeOpen(true)}
           onMouseLeave={() => setHomeOpen(false)}
         >
-          <span className="menu-item">Home</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Home</Link>
+
         </li>
         <li
 
           onMouseEnter={() => setWomenOpen(true)}
           onMouseLeave={() => setWomenOpen(false)}
         >
-          <span className="menu-item">Women</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Women</Link>
           {isWomenOpen && (
             <ul className="dropdown">
               <li
@@ -197,7 +200,7 @@ const NavMenu = () => {
           onMouseEnter={() => setMenOpen(true)}
           onMouseLeave={() => setMenOpen(false)}
         >
-          <span className="menu-item">Men</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Men</Link>
           {isMenOpen && (
             <ul className="dropdown">
               <li
@@ -357,7 +360,7 @@ const NavMenu = () => {
           onMouseEnter={() => setKidsOpen(true)}
           onMouseLeave={() => setKidsOpen(false)}
         >
-          <span className="menu-item">Children</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Children</Link>
           {isKidsOpen && (
             <ul className="dropdown">
               <li
@@ -497,7 +500,7 @@ const NavMenu = () => {
           onMouseEnter={() => setHouseOpen(true)}
           onMouseLeave={() => setHouseOpen(false)}
         >
-          <span className="menu-item">House</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>House</Link>
           {isHouseOpen && (
             <ul className="dropdown">
               <li
@@ -625,7 +628,7 @@ const NavMenu = () => {
           onMouseEnter={() => setPetsOpen(true)}
           onMouseLeave={() => setPetsOpen(false)}
         >
-          <span className="menu-item">Pets</span>
+         <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Pets</Link>
           {isPetsOpen && (
             <ul className="dropdown">
               <li
@@ -779,7 +782,7 @@ const NavMenu = () => {
           onMouseEnter={() => setBuySellOpen(true)}
           onMouseLeave={() => setBuySellOpen(false)}
         >
-          <span className="menu-item">Buy & Sell</span>
+          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Buy & Sell</Link>
           {isBuySellOpen && (
             <ul className="dropdown">
               <li className="dropdown-item">Forum</li>

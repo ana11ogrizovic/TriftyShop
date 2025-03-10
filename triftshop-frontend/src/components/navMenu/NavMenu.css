@@ -2,6 +2,8 @@
     position: relative;
     background-color: #FDF6FA;
     padding: 10px 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   
   .nav-menu ul {
@@ -31,8 +33,8 @@
   
   .menu-item:hover,
   .dropdown-item:hover {
-    color: #007bff;
-    background-color: #f8f9fa; /* Suptilna pozadina pri hoveru */
+    color: #e737ad;
+    background-color: #e64cab0a; /* Suptilna pozadina pri hoveru */
   }
   
   .dropdown {

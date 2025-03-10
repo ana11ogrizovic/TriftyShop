@@ -18,7 +18,6 @@ At Thrifty Shop, we believe in the power of second-hand goods and sustainability
 </p>
 
       <a 
-        href="#" 
         style={{ marginLeft: '4rem', color: 'rgb(83, 49, 19)', textDecoration: 'none', marginBottom: '1rem' }}
       >
         triftyshop.rs 
