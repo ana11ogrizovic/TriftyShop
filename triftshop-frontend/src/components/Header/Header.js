@@ -86,25 +86,25 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
       <div style={{ backgroundColor: '#FDF6FA', padding: '10px', display: 'flex' }}>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
           <a href="https://www.facebook.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px', marginLeft: '3%' }}>
-            <i className="fa fa-facebook-square" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+            <i className="fa fa-facebook-square" style={{ fontSize: '27px', color: '#221202d1', textTransform: 'lowercase' }}></i>
           </a>
           <a href="https://www.instagram.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
-            <i className="fa fa-instagram" aria-hidden="true" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+            <i className="fa fa-instagram" aria-hidden="true" style={{ fontSize: '27px', color: '#221202d1', textTransform: 'lowercase' }}></i>
           </a>
           <a href="https://www.snapchat.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
-            <i className="fa fa-pinterest" aria-hidden="true" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+            <i className="fa fa-pinterest" aria-hidden="true" style={{ fontSize: '27px', color: '#221202d1', textTransform: 'lowercase' }}></i>
           </a>
           <a href="https://www.twitter.com" target="_blank" rel="noreferrer" style={{ marginRight: '10px' }}>
-            <i className="fa fa-twitter-square" style={{ fontSize: '20px', color: '#221202d1', textTransform: 'lowercase' }}></i>
+            <i className="fa fa-twitter-square" style={{ fontSize: '27px', color: '#221202d1', textTransform: 'lowercase' }}></i>
           </a>
         </div>
 
         <nav>
-          <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex' }}>
+          <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex', paddingTop:'0.5rem' }}>
             {isLoggedIn && (
               <li style={{ marginRight: '10px' }}>
                 <Button
-                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '4px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase' }}
+                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '4px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase', fontSize:'15px' }}
                   onClick={handleUserMenuOpen}
                 >
                   {userEmail}
@@ -129,12 +129,12 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
             {!isLoggedIn && !isUserPanelPage && (
               <>
                 <li >
-                  <Link to="/login" style={{ textDecoration: 'none', color: '#555', marginRight: '10px' }}>
+                  <Link to="/login" style={{ textDecoration: 'none', color: '#555', marginRight: '10px', fontSize:'17px' }}>
                     Login
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signup" style={{ textDecoration: 'none', color: '#555', marginRight: '5px', marginLeft: '4px' }}>
+                  <Link to="/signup" style={{ textDecoration: 'none', color: '#555', marginRight: '0.7rem', marginLeft: '4px' ,fontSize:'17px'}}>
                     Signup
                   </Link>
                 </li>
@@ -147,7 +147,7 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
       {/* Glavni Toolbar sa logoom i pretraživačem */}
       <Toolbar style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#FDF6FA' }}>
         <div style={{ flex: 1, marginLeft: '2%' }}>
-          <img src={logo} alt="Logo" style={{ height: '60px', marginTop: '1%', backgroundColor: 'white' }} />
+          <img src={logo} alt="Logo" style={{ height: '90px', backgroundColor: 'white' }} />
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <TextField

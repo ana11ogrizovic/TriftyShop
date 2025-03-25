@@ -929,7 +929,7 @@ const Home = () => {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', padding: '0rem 20rem', backgroundColor: '#FDF6FA', paddingBottom: '3rem' }}>
         {/* MENS SECTION */}
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', height: '50rem' }}>
-          <img src={Image19} alt="Mens" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
+          <img src={Image19} alt="Mens" style={{ width: '100%',borderRadius:'8px', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white' }}>
             <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>MENS</h2>
             <button
@@ -956,7 +956,7 @@ const Home = () => {
 
         {/* WOMENS SECTION */}
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', height: '50rem' }}>
-          <img src={Image20} alt="Womens" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
+          <img src={Image20} alt="Womens" style={{ width: '100%', borderRadius:'8px' ,height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white' }}>
             <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>WOMENS</h2>
             <button
