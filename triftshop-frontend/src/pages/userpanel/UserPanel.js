@@ -16,12 +16,13 @@ export default function UserPanel() {
       alignItems: 'flex-start',
       minHeight: '100vh',
       backgroundColor: '#FDF6FA',
-      fontFamily: 'Arial, sans-serif'
+      fontFamily: 'Arial, sans-serif',
+      paddingTop: '20px',
     }}>
       {/* Panel Wrapper */}
       <div style={{
         width: '70%',
-        backgroundColor: '#FFF',
+        backgroundColor: ' rgba(243, 97, 175, 0.03)',
         padding: '2rem',
         borderRadius: '10px',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
@@ -31,7 +32,8 @@ export default function UserPanel() {
           width: '25%',
           float: 'left',
           padding: '1rem',
-          borderRight: '1px solid #E5E3E4'
+          borderRight: '1px solid #E5E3E4',
+          minHeight:'100vh'
         }}>
           <h2 style={{
             fontWeight: '600',
@@ -39,7 +41,7 @@ export default function UserPanel() {
             color: '#3F3038',
             marginBottom: '1rem'
           }}>
-            Moj Profil
+            My Profile
           </h2>
           <p style={{
             fontSize: '1rem',
@@ -55,54 +57,28 @@ export default function UserPanel() {
             color: '#3F3038',
             lineHeight: '2'
           }}>
-            <li>Moji oglasi</li>
-            <li>Poruke</li>
-            <li>Obaveštenja</li>
-            <li>Ocene</li>
-            <li>Pratim</li>
-            <li>Sačuvane pretrage</li>
-            <li>Adresar</li>
-            <li>Pošiljke</li>
-            <li>Zakažite kurira</li>
-            <li>Dopuna kredita (45 din)</li>
-            <li>kp Izlog</li>
-            <li>kp Obnavljač</li>
-            <li>Moj nalog</li>
-            <li style={{ color: '#F361AF', cursor: 'pointer' }}>Izlogujte se</li>
+            <li>My Listings</li>
+            <li>Messages</li>
+            <li>Notifications</li>
+            <li>Ratings</li>
+            <li>Following</li>
+            <li>Saved Searches</li>
+            <li>Address Book</li>
+            <li>Shipments</li>
+            <li>Schedule a Courier</li>
+            <li style={{ color: '#F361AF', cursor: 'pointer' }}>Log Out</li>
+
           </ul>
         </aside>
 
         {/* Glavni deo - Kartice */}
         <main style={{
-  flex: 1, // Ovo omogućava da glavni deo zauzima preostali prostor
-  padding: '1rem',
-  display: 'flex', // Koristi Flexbox da postavi unutrašnje elemente
-  flexDirection: 'column', // Obezbeđuje vertikalno poravnavanje unutar glavnog dela
-  gap: '1rem' // Dodaje razmak između unutrašnjih elemenata
-}}>
-
-          <div style={{
-            marginBottom: '2rem',
-            borderBottom: '1px solid #E5E3E4',
-            paddingBottom: '1.5rem',
-            textAlign: 'center',
-            flex:1,
-          }}>
-            <h1 style={{
-              fontWeight: '600',
-              fontSize: '2.5rem',
-              color: '#3F3038',
-              marginBottom: '0.5rem'
-            }}>
-              Dobrodošli, Ana!
-            </h1>
-            <p style={{
-              fontSize: '1.1rem',
-              color: '#6D6467'
-            }}>
-              Ovde možete upravljati svojim nalozima i aktivnostima.
-            </p>
-          </div>
+          flex: 1, // Ovo omogućava da glavni deo zauzima preostali prostor
+          padding: '1rem',
+          display: 'flex', // Koristi Flexbox da postavi unutrašnje elemente
+          flexDirection: 'column', // Obezbeđuje vertikalno poravnavanje unutar glavnog dela
+          gap: '1rem' // Dodaje razmak između unutrašnjih elemenata
+        }}>
 
           <div style={{
             display: 'flex',
@@ -110,7 +86,7 @@ export default function UserPanel() {
             gap: '2rem',
             flexWrap: 'wrap'
           }}>
-            {/* Statistika */}
+            {/* Statistics */}
             <div style={{
               flex: 1,
               minWidth: '300px',
@@ -126,7 +102,7 @@ export default function UserPanel() {
                 marginBottom: '1rem',
                 color: '#3F3038'
               }}>
-                Statistika
+                Statistics
               </h4>
               <ul style={{
                 listStyleType: 'none',
@@ -135,13 +111,13 @@ export default function UserPanel() {
                 color: '#6D6467',
                 lineHeight: '1.8'
               }}>
-                <li>Oglasi: <span style={{ color: '#F361AF' }}>{userStats.ads}</span></li>
-                <li>Poruke: <span style={{ color: '#F361AF' }}>{userStats.messages}</span></li>
-                <li>Obaveštenja: <span style={{ color: '#F361AF' }}>{userStats.notifications}</span></li>
+                <li>Listings: <span style={{ color: '#F361AF' }}>{userStats.ads}</span></li>
+                <li>Messages: <span style={{ color: '#F361AF' }}>{userStats.messages}</span></li>
+                <li>Notifications: <span style={{ color: '#F361AF' }}>{userStats.notifications}</span></li>
               </ul>
             </div>
 
-            {/* Obaveštenja */}
+            {/* Notifications */}
             <div style={{
               flex: 1,
               minWidth: '300px',
@@ -157,7 +133,7 @@ export default function UserPanel() {
                 marginBottom: '1rem',
                 color: '#3F3038'
               }}>
-                Obaveštenja
+                Notifications
               </h4>
               <ul style={{
                 listStyleType: 'none',
@@ -167,13 +143,107 @@ export default function UserPanel() {
                 lineHeight: '1.8'
               }}>
                 <li style={{ color: '#F361AF', cursor: 'pointer' }}>
-                  Novo obaveštenje o isporuci
+                  New delivery notification
                 </li>
                 <li style={{ color: '#F361AF', cursor: 'pointer' }}>
-                  Promene u vašem nalogu
+                  Changes in your account
                 </li>
               </ul>
             </div>
+
+            {/* Sales Overview */}
+            <div style={{
+              flex: 1,
+              minWidth: '300px',
+              backgroundColor: '#FFF',
+              padding: '1.5rem',
+              borderRadius: '8px',
+              border: '1px solid #E5E3E4',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            }}>
+              <h4 style={{
+                fontWeight: '600',
+                fontSize: '1.4rem',
+                marginBottom: '1rem',
+                color: '#3F3038'
+              }}>
+                Sales Overview
+              </h4>
+              <ul style={{
+                listStyleType: 'none',
+                padding: 0,
+                fontSize: '1.1rem',
+                color: '#6D6467',
+                lineHeight: '1.8'
+              }}>
+                <li>Total Sales: <span style={{ color: '#F361AF' }}>${userStats.salesTotal}</span></li>
+                <li>Pending Orders: <span style={{ color: '#F361AF' }}>{userStats.pendingOrders}</span></li>
+                <li>Completed Orders: <span style={{ color: '#F361AF' }}>{userStats.completedOrders}</span></li>
+              </ul>
+            </div>
+
+            {/* Inventory Management */}
+            <div style={{
+              flex: 1,
+              minWidth: '300px',
+              backgroundColor: '#FFF',
+              padding: '1.5rem',
+              borderRadius: '8px',
+              border: '1px solid #E5E3E4',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            }}>
+              <h4 style={{
+                fontWeight: '600',
+                fontSize: '1.4rem',
+                marginBottom: '1rem',
+                color: '#3F3038'
+              }}>
+                Inventory Management
+              </h4>
+              <ul style={{
+                listStyleType: 'none',
+                padding: 0,
+                fontSize: '1.1rem',
+                color: '#6D6467',
+                lineHeight: '1.8'
+              }}>
+                <li>Active Listings: <span style={{ color: '#F361AF' }}>{userStats.activeListings}</span></li>
+                <li>Out of Stock: <span style={{ color: '#F361AF' }}>{userStats.outOfStock}</span></li>
+                <li>Recently Added: <span style={{ color: '#F361AF' }}>{userStats.recentlyAdded}</span></li>
+              </ul>
+            </div>
+
+            {/* Financial Reports */}
+            <div style={{
+              flex: 1,
+              minWidth: '300px',
+              backgroundColor: '#FFF',
+              padding: '1.5rem',
+              borderRadius: '8px',
+              border: '1px solid #E5E3E4',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            }}>
+              <h4 style={{
+                fontWeight: '600',
+                fontSize: '1.4rem',
+                marginBottom: '1rem',
+                color: '#3F3038'
+              }}>
+                Financial Reports
+              </h4>
+              <ul style={{
+                listStyleType: 'none',
+                padding: 0,
+                fontSize: '1.1rem',
+                color: '#6D6467',
+                lineHeight: '1.8'
+              }}>
+                <li>Monthly Revenue: <span style={{ color: '#F361AF' }}>${userStats.monthlyRevenue}</span></li>
+                <li>Last Payout: <span style={{ color: '#F361AF' }}>${userStats.lastPayout}</span></li>
+                <li>Upcoming Payout: <span style={{ color: '#F361AF' }}>${userStats.upcomingPayout}</span></li>
+              </ul>
+            </div>
+
           </div>
         </main>
       </div>
