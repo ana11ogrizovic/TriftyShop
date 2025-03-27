@@ -1,3 +1,9 @@
+header {
+  background-color: #fdf6fa; /* Svetloroze pozadina */
+  padding: 0px 16rem;
+}
+
+
 .bottom-toolbar {
   width: 98.2%;
   display: flex;

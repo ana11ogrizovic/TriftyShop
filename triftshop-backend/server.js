@@ -24,9 +24,14 @@ mongoose
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch((err) => console.error('❌ Database connection error:', err));
 
+
 // 🔹 REGISTRACIJA KORISNIKA
 app.post('/api/auth/signup', async (req, res) => {
   const { fullName, email, password } = req.body;
+
+  if (!fullName || !email || !password) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
 
   try {
     const existingUser = await User.findOne({ email });
@@ -45,6 +50,7 @@ app.post('/api/auth/signup', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 // 🔹 LOGIN KORISNIKA
 app.post('/api/auth/login', async (req, res) => {

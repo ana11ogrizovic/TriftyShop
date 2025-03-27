@@ -4,22 +4,13 @@ import { Button, Toolbar, TextField, Menu, MenuItem } from '@mui/material';
 import './Header.css';
 import logo from '../../assets/logo/logo.png';
 import 'font-awesome/css/font-awesome.min.css';
-import NavMenu from '../navMenu/NavMenu';
+import { FaPlus } from 'react-icons/fa'; // Importuj plus ikonu
 
 const Header = ({ isLoggedIn, userEmail, onLogout }) => {
   const location = useLocation();
   console.log("Current path:", location.pathname);
 
-
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [anchorElWomen, setAnchorElWomen] = React.useState(null);
-  const [clothingAnchorEl, setClothingAnchorEl] = React.useState(null);
-  const [accessoriesAnchorEl, setAccessoriesAnchorEl] = React.useState(null);
-  const [shoesAnchorEl, setShoesAnchorEl] = React.useState(null);
-  const [bagsAnchorEl, setBagsAnchorEl] = React.useState(null);
-  const [beautyAnchorEl, setBeautyAnchorEl] = React.useState(null);
-
-
 
   const handleUserMenuOpen = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -29,57 +20,7 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
     setAnchorElUser(null);
   };
 
-  const handleWomenMenuOpen = (event) => {
-    setAnchorElWomen(event.currentTarget);
-  };
-
-  const handleWomenMenuClose = () => {
-    setAnchorElWomen(null);
-  };
-
-  const handleClothingMenuOpen = (event) => {
-    setClothingAnchorEl(event.currentTarget);
-  };
-
-  const handleClothingMenuClose = () => {
-    setClothingAnchorEl(null);
-  };
-
-  const handleAccessoriesMenuOpen = (event) => {
-    setAccessoriesAnchorEl(event.currentTarget);
-  };
-
-  const handleAccessoriesMenuClose = () => {
-    setAccessoriesAnchorEl(null);
-  };
-
-
-  const handleShoesMenuOpen = (event) => {
-    setShoesAnchorEl(event.currentTarget);
-  };
-
-  const handleShoesMenuClose = () => {
-    setShoesAnchorEl(null);
-  };
-
-  const handleBagsMenuOpen = (event) => {
-    setBagsAnchorEl(event.currentTarget);
-  };
-
-  const handleBagsMenuClose = () => {
-    setBagsAnchorEl(null);
-  };
-
-  const handleBeautyMenuOpen = (event) => {
-    setBeautyAnchorEl(event.currentTarget);
-  };
-
-  const handleBeautyMenuClose = () => {
-    setBeautyAnchorEl(null);
-  };
-
-
-  const isUserPanelPage = location.pathname.includes('/userpanel');
+  const isUserPanelPage = location.pathname.includes('/userpanel'); // Provera da li smo na userpanel stranici
 
   return (
     <header>
@@ -100,16 +41,24 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
         </div>
 
         <nav>
-          <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex', paddingTop:'0.5rem' }}>
+          <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex', paddingTop: '0.5rem' }}>
             {isLoggedIn && (
               <li style={{ marginRight: '10px' }}>
                 <Button
-                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '4px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase', fontSize:'15px' }}
-                  onClick={handleUserMenuOpen}
-                >
-                  {userEmail}
-                  <i className="fa fa-caret-down" aria-hidden="true" style={{ fontSize: '14px', marginLeft: '5px' }}></i>
-                </Button>
+                variant="contained"
+                style={{
+                  backgroundColor: '#3F3038', // Postavlja prilagođenu boju pozadine
+                  color: '#fff', // Postavlja boju teksta (bela za kontrast)
+                  display: 'flex',
+                  alignItems: 'center',
+                  fontSize: '14px',
+                  marginBottom: '-0.5rem',
+                  width: '210px',
+                  marginRight: '0.2rem'
+                }}
+              >
+                <FaPlus style={{ marginRight: '8px' }} /> Add your listing
+              </Button>
                 <Menu
                   anchorEl={anchorElUser}
                   open={Boolean(anchorElUser)}
@@ -128,13 +77,13 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
             )}
             {!isLoggedIn && !isUserPanelPage && (
               <>
-                <li >
-                  <Link to="/login" style={{ textDecoration: 'none', color: '#555', marginRight: '10px', fontSize:'17px' }}>
+                <li>
+                  <Link to="/login" style={{ textDecoration: 'none', color: '#555', marginRight: '10px', fontSize: '17px' }}>
                     Login
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signup" style={{ textDecoration: 'none', color: '#555', marginRight: '0.7rem', marginLeft: '4px' ,fontSize:'17px'}}>
+                  <Link to="/signup" style={{ textDecoration: 'none', color: '#555', marginRight: '0.7rem', marginLeft: '4px', fontSize: '17px' }}>
                     Signup
                   </Link>
                 </li>
@@ -147,82 +96,32 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
       {/* Glavni Toolbar sa logoom i pretraživačem */}
       <Toolbar style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#FDF6FA' }}>
         <div style={{ flex: 1, marginLeft: '2%' }}>
-          <img src={logo} alt="Logo" style={{ height: '90px', backgroundColor: 'white' }} />
+          <img src={logo} alt="Logo" style={{ height: '85px', backgroundColor: 'white' }} />
         </div>
+
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <TextField
-            label="Search"
-            variant="outlined"
-            size="small"
-            style={{ marginRight: '0', width: '250px', marginLeft: '2%' }}
-          />
-          <div>
-            {isLoggedIn && (
-              <Link
-                to="/cart"
-                style={{
-                  fontSize: '25px',
-                  marginLeft: '20px',
-                  marginRight: '16px',
-                  textTransform: 'lowercase',
-                  color: 'black'
-                }}
-              >
-                <i
-                  className="far fa-user"
-                  style={{
-                    transition: 'color 0.3s ease, fill 0.3s ease',
-                  }}
-                ></i>
-              </Link>
-            )}
-          </div>
-          <div>
-            {isLoggedIn && (
-              <Link
-                to="/cart"
-                style={{
-                  fontSize: '25px',
-                  marginLeft: '5%',
-                  marginRight: '10px',
-                  textTransform: 'lowercase',
-                }}
-              >
-                <i
-                  className="far fa-heart"
-                  style={{
-                    transition: 'color 0.3s ease, fill 0.3s ease',
-                  }}
-                ></i>
-              </Link>
-            )}
-          </div>
-
+          {/* Ako smo na stranici userpanel, prikazujemo dugme "Dodaj oglas" */}
+          {isUserPanelPage && (
+            <>
+              <Button
+                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '0.4rem', width: '210px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase', fontSize: '16px',marginTop: '-3.5rem', }}
+                  onClick={handleUserMenuOpen}
+                >
+                  {userEmail}
+                  <i className="fa fa-caret-down" aria-hidden="true" style={{ fontSize: '14px', marginLeft: '5px' }}></i>
+                </Button>
+            </>
+          )}
+          {!isUserPanelPage && (
+            <TextField
+              label="Search"
+              variant="outlined"
+              size="small"
+              style={{ marginRight: '0', width: '250px', marginLeft: '2%' }}
+            />
+          )}
+          
         </div>
-      </Toolbar>
-
-      {/* Donji Toolbar sa navigacionim linkom */}
-      <Toolbar className="bottom-toolbar">
-        <NavMenu
-          anchorEl={anchorElWomen}
-          handleMenuOpen={handleWomenMenuOpen}
-          handleMenuClose={handleWomenMenuClose}
-          clothingAnchorEl={clothingAnchorEl}
-          accessoriesAnchorEl={accessoriesAnchorEl}
-          shoesAnchorEl={shoesAnchorEl}
-          handleClothingMenuOpen={handleClothingMenuOpen}
-          handleClothingMenuClose={handleClothingMenuClose}
-          handleAccessoriesMenuOpen={handleAccessoriesMenuOpen}
-          handleAccessoriesMenuClose={handleAccessoriesMenuClose}
-          handleShoesMenuOpen={handleShoesMenuOpen}
-          handleShoesMenuClose={handleShoesMenuClose}
-          bagsAnchorEl={bagsAnchorEl}
-          handleBagsMenuOpen={handleBagsMenuOpen}
-          handleBagsMenuClose={handleBagsMenuClose}
-          beautyAnchorEl={beautyAnchorEl}
-          handleBeautyMenuOpen={handleBeautyMenuOpen}
-          handleBeautyMenuClose={handleBeautyMenuClose}
-        />
       </Toolbar>
     </header>
   );
