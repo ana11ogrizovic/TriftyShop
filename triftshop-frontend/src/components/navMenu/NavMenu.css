@@ -1,11 +1,11 @@
 .nav-menu {
-    position: relative;
-    background-color: #FDF6FA;
-    padding: 10px 20px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-  
+  width: 100%; /* Celom širinom ekrana */
+  background-color: #FDF6FA; /* Svetloroze boja */
+  padding: 10px 0; /* Razmak iznad i ispod menija */
+  border-top: 2px solid #ccc; /* Gornja horizontalna linija */
+  border-bottom: 2px solid #ccc; /* Donja horizontalna linija */
+  text-align: center; /* Centrirajte sadržaj */
+}
   .nav-menu ul {
     list-style: none;
     padding: 0;
@@ -38,15 +38,33 @@
   }
   
   .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    z-index: 1000;
-    min-width: 200px;
+    position: absolute; /* Osigurava da je dropdown pozicioniran relativno na roditeljski element */
+    left: 0; /* Poravnava uz levu ivicu roditelja */
+    background-color: #FDF6FA; /* Svetloroze pozadina */
+    padding: 10px;
+    border: 1px solid #ccc; /* Dodaje okvir */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Blaga senka za vizuelno poboljšanje */
+    z-index: 1000; /* Osigurava da dropdown bude iznad ostalih elemenata */
   }
+  
+  .dropdown-item {
+    text-align: left; /* Poravnanje teksta uz levu ivicu */
+    padding: 8px 15px; /* Razmak unutar stavki */
+    font-size: 15px; /* Veličina fonta */
+    color: #333; /* Neutralna boja teksta */
+    text-decoration: none; /* Uklanja podvlačenje */
+    display: block; /* Svaka stavka zauzima ceo red */
+    width: 180px; /* Širina stavke */
+    white-space: nowrap; /* Sprečava prelamanje teksta na sledeći red */
+    overflow: hidden; /* Sakriva sav tekst koji prelazi širinu */
+    text-overflow: ellipsis; /* Dodaje "..." ako tekst prelazi širinu */
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgba(243, 97, 175, 0.2); /* Svetloroze nijansa na hover */
+    color: #221202d1; /* Boja teksta na hover */
+  }
+  
   
   .sub-dropdown {
     position: absolute;

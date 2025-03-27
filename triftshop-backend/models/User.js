@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');  // Može i bcrypt, ali koristim bcryptjs ovde
 
+
 const userSchema = new mongoose.Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }, // Hashovana lozinka
+  password: { type: String, required: true },
 }, { timestamps: true });
+
 
 // Pre-save hook: Hashuje lozinku samo ako već nije hash-ovana
 userSchema.pre('save', async function(next) {

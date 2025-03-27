@@ -4,11 +4,6 @@ import logo from '../../assets/logo/logo.png';
 const Footer = () => {
   return (
     <div style={{ flex: 1, backgroundColor: '#FDF6FA', padding: '2rem 20rem', fontFamily: 'Arial, sans-serif' }}>
-      {/* Logo */}
-      <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-        <img src={logo} alt="Logo" style={{ height: '80px', backgroundColor: 'white', borderRadius: '10px' }} />
-      </div>
-
       {/* Glavni sadržaj */}
       <div style={{
         display: 'flex',
@@ -20,7 +15,7 @@ const Footer = () => {
         borderTop: '1px solid #ddd'
       }}>
         {/* Contact Us */}
-        <div style={{ flex: 1, minWidth: '200px' }}>
+        <div style={{ flex: 1, minWidth: '12.5rem' }}>
           <h4 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem', color: '#3F3038' }}>Contact Us</h4>
           <p style={{ fontSize: '1.1rem', color: '#333', lineHeight: '1.8' }}>
             <strong>Email:</strong> <a href="mailto:support@thriftyshop.com" style={{ color: '#F361AF', textDecoration: 'none' }}>support@thriftyshop.com</a><br />
@@ -29,15 +24,15 @@ const Footer = () => {
         </div>
 
         {/* About Us */}
-        <div style={{ flex: 2, minWidth: '300px' }}>
+        <div style={{ flex: 2, minWidth: '18.75rem' }}>
           <h4 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem', color: '#3F3038' }}>About Us</h4>
           <p style={{ fontSize: '1rem', color: '#333', lineHeight: '1.8' }}>
-          At Thrifty Shop, we embrace sustainability by offering second-hand treasures for everyone. Explore pre-loved clothing, accessories, and home goods while contributing to a greener planet. Every purchase supports the cycle of reuse! We take pride in carefully curating a collection that combines quality, style, and affordability, ensuring there’s something for everyone.
+            At Thrifty Shop, we embrace sustainability by offering second-hand treasures for everyone. Explore pre-loved clothing, accessories, and home goods while contributing to a greener planet. Every purchase supports the cycle of reuse! We take pride in carefully curating a collection that combines quality, style, and affordability, ensuring there’s something for everyone.
           </p>
         </div>
 
         {/* Information */}
-        <div style={{ flex: 1, minWidth: '200px' }}>
+        <div style={{ flex: 1, minWidth: '12.5rem' }}>
           <h4 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem', color: '#3F3038' }}>Information</h4>
           <ul style={{ listStyleType: 'none', padding: 0, fontSize: '1.1rem', lineHeight: '2', color: '#333' }}>
             <li><b><a href="/about" style={{ textDecoration: 'none', color: '#F361AF' }}>About Us</a></b></li>
@@ -60,29 +55,29 @@ const Footer = () => {
           Stay updated on new arrivals, sales, and exclusive deals!
         </p>
         <form>
-          <input 
-            type="email" 
-            placeholder="Enter your email address" 
+          <input
+            type="email"
+            placeholder="Enter your email address"
             style={{
               padding: '0.8rem',
               fontSize: '1rem',
-              borderRadius: '5px',
+              borderRadius: '0.3125rem', // 5px u rem
               border: '1px solid #ccc',
               width: '60%',
               marginRight: '1rem'
             }}
           />
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             style={{
               padding: '0.8rem 1.5rem',
               backgroundColor: '#F361AF',
               color: 'white',
               fontWeight: 'bold',
               border: 'none',
-              borderRadius: '5px',
+              borderRadius: '0.3125rem', // 5px u rem
               cursor: 'pointer',
-              fontSize:'17px'
+              fontSize: '1.0625rem' // 17px u rem
             }}
           >
             Subscribe
