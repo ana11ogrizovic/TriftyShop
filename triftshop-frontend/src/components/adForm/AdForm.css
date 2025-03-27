@@ -1,0 +1,112 @@
+body {
+    background-color: #fdf6fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .page-container {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 36px;
+  }
+  
+  .large-form {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+    background: #eb62b705; /* Svetlo plava boja */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background: #eb62b705; /* Svetlo plava boja */
+    
+  }
+  
+  input, textarea, select {
+    background-color: #fcbadd3d; /* Svetlo roza pozadina */
+    border: 2px solid #fcbadd; /* Roza boja okvira */
+    color: #333; /* Boja teksta */
+    padding: 15px; /* Povećanje unutrašnjih margina */
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Polja će zauzimati celu širinu form-grupe */
+    height: 50px; /* Povećava visinu polja (osim textarea) */
+    box-sizing: border-box; /* Osigurava da padding ne utiče na širinu */
+}
+
+textarea {
+    height: 150px; /* Specifična visina za textarea */
+    resize: none; /* Sprečavanje promene veličine */
+}
+
+  
+  .submit-btn {
+    background-color: #F361AF;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #f1409fa6;
+  }
+  
+
+  .upload-box {
+    width: 200px;
+    height: 200px;
+    background-color: #fcbadd9a; /* Light pink background */
+    border: 2px dashed #fcbadd; /* Pink dashed border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .upload-box:hover {
+    background-color: #fcbadd; /* Darker pink background on hover */
+    border-color: #f361af; /* Darker pink border on hover */
+  }
+  
+  .upload-icon {
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Space between icon and text */
+  }
+  
+  .upload-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  

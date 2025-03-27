@@ -9,6 +9,7 @@ import UserPanel from './pages/userpanel/UserPanel';
 import Home from './pages/home/Home';
 import Cart from './pages/cart/Cart';
 import EditProfile from './pages/editprofile/EditProfile';
+import AdForm from "./components/adForm/AdForm";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,14 +32,12 @@ function App() {
     navigate('/login');
   };
 
-  // Logika za prikazivanje NavMenu
-  const shouldDisplayNavMenu = location.pathname !== '/userpanel';
+  const shouldDisplayNavMenu = location.pathname !== '/userpanel' && location.pathname !== '/addlisting';
+
 
   return (
     <>
-      {/* Header se uvek prikazuje */}
       <Header isLoggedIn={isLoggedIn} userEmail={userEmail} onLogout={handleLogout} />
-      {/* NavMenu se prikazuje samo ako nije na stranici UserPanel */}
       {shouldDisplayNavMenu && <NavMenu />}
       <Routes>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
@@ -47,6 +46,7 @@ function App() {
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/addlisting" element={<AdForm />} />
       </Routes>
       {/* Footer se uvek prikazuje */}
       <Footer />

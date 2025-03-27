@@ -5,9 +5,11 @@ import './Header.css';
 import logo from '../../assets/logo/logo.png';
 import 'font-awesome/css/font-awesome.min.css';
 import { FaPlus } from 'react-icons/fa'; // Importuj plus ikonu
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ isLoggedIn, userEmail, onLogout }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   console.log("Current path:", location.pathname);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -21,6 +23,7 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
   };
 
   const isUserPanelPage = location.pathname.includes('/userpanel'); // Provera da li smo na userpanel stranici
+  const isAddListingPage = location.pathname.includes('/addlisting'); // Provera da li smo na addlisting stranici
 
   return (
     <header>
@@ -42,23 +45,24 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
 
         <nav>
           <ul style={{ listStyleType: 'none', margin: 0, padding: 0, display: 'flex', paddingTop: '0.5rem' }}>
-            {isLoggedIn && (
+            {isLoggedIn && !isAddListingPage && ( // Provera da li nismo na addlisting stranici
               <li style={{ marginRight: '10px' }}>
                 <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#3F3038', // Postavlja prilagođenu boju pozadine
-                  color: '#fff', // Postavlja boju teksta (bela za kontrast)
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontSize: '14px',
-                  marginBottom: '-0.5rem',
-                  width: '210px',
-                  marginRight: '0.2rem'
-                }}
-              >
-                <FaPlus style={{ marginRight: '8px' }} /> Add your listing
-              </Button>
+                  onClick={() => navigate("/addlisting")}
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#3F3038', // Postavlja prilagođenu boju pozadine
+                    color: '#fff', // Postavlja boju teksta (bela za kontrast)
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '14px',
+                    marginBottom: '-0.5rem',
+                    width: '250px',
+                    marginRight: '0.2rem'
+                  }}
+                >
+                  <FaPlus style={{ marginRight: '8px' }} /> Add your listing
+                </Button>
                 <Menu
                   anchorEl={anchorElUser}
                   open={Boolean(anchorElUser)}
@@ -101,18 +105,46 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
 
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           {/* Ako smo na stranici userpanel, prikazujemo dugme "Dodaj oglas" */}
-          {isUserPanelPage && (
-            <>
-              <Button
-                  style={{ textDecoration: 'none', color: '#221202d1', marginRight: '0.4rem', width: '210px', backgroundColor: 'rgba(243, 97, 175)', textTransform: 'lowercase', fontSize: '16px',marginTop: '-3.5rem', }}
-                  onClick={handleUserMenuOpen}
+          {isLoggedIn && (
+  <>
+    <Button
+      style={{
+        textDecoration: 'none',
+        color: '#221202d1',
+        marginRight: '0.4rem',
+        width: '250px',
+        backgroundColor: 'rgba(243, 97, 175)',
+        textTransform: 'lowercase',
+        fontSize: '16px',
+        marginTop: '-3.5rem',
+      }}
+      onClick={handleUserMenuOpen}
+    >
+      {userEmail}
+      <i
+        className="fa fa-caret-down"
+        aria-hidden="true"
+        style={{ fontSize: '14px', marginLeft: '5px' }}
+      ></i>
+    </Button>
+    <Menu
+                  anchorEl={anchorElUser}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleUserMenuClose}
                 >
-                  {userEmail}
-                  <i className="fa fa-caret-down" aria-hidden="true" style={{ fontSize: '14px', marginLeft: '5px' }}></i>
-                </Button>
-            </>
-          )}
-          {!isUserPanelPage && (
+                  <MenuItem onClick={handleUserMenuClose}>
+                    <Link to="/editprofile" style={{ textDecoration: 'none', color: 'inherit', width: '180px' }}>
+                      Edit Profile
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={onLogout} style={{ color: 'red' }}>
+                    Logout
+                  </MenuItem>
+                </Menu>
+  </>
+)}
+
+          {!isUserPanelPage && !isAddListingPage && ( // Proverava da li nismo na stranici addlisting
             <TextField
               label="Search"
               variant="outlined"
@@ -120,7 +152,6 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
               style={{ marginRight: '0', width: '250px', marginLeft: '2%' }}
             />
           )}
-          
         </div>
       </Toolbar>
     </header>
