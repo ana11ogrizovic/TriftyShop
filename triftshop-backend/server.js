@@ -1,29 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const User = require('./models/User');
+const adRoutes = require('./routes/adRoutes'); // Rute za oglase
 
 dotenv.config();
 const app = express();
 
 // 🔹 Middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000',  // Podesite ovu vrednost prema vašem frontend-u
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-app.use(express.json());  // Važno da bude pre ruta!
+app.use(bodyParser.json());  // Važno da bude pre ruta!
 
 // 🔹 Povezivanje sa MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME })
+  .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME, useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch((err) => console.error('❌ Database connection error:', err));
-
 
 // 🔹 REGISTRACIJA KORISNIKA
 app.post('/api/auth/signup', async (req, res) => {
@@ -51,34 +51,26 @@ app.post('/api/auth/signup', async (req, res) => {
   }
 });
 
-
 // 🔹 LOGIN KORISNIKA
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log('📥 Login attempt:', email);
 
     // Pronađi korisnika u bazi
     const user = await User.findOne({ email });
     if (!user) {
-      console.log('❌ User not found');
-      // Ako korisnik ne postoji, vrati specifičnu poruku
       return res.status(401).json({ message: 'Nema korisnika u bazi' });
     }
 
     // Uporedi lozinku sa sačuvanim hashom
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log('🔍 Password check:', isPasswordValid);
 
     if (!isPasswordValid) {
-      console.log('❌ Invalid password');
-      // Ako je lozinka pogrešna, vrati generičku poruku
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Generiši JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    console.log('✅ Login successful, token generated:', token);
 
     res.json({ message: 'Login successful', token });
   } catch (error) {
@@ -87,9 +79,11 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-
-
+// 🔹 Povezivanje rute za oglase
+app.use('/api/ads', adRoutes);
 
 // 🔹 POKRETANJE SERVERA
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+});
