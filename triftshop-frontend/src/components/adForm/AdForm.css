@@ -1,112 +1,228 @@
 body {
-    background-color: #fdf6fa;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .page-container {
-    width: 100%;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    text-align: center;
-  }
+  background-color: #fdf6fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  justify-content: center; /* Horizontalno centriranje */
+  align-items: center;  /* Osigurava da zauzima celu visinu ekrana */
+  padding: 40px 20px;
+  border-radius: 15px;
+  padding-left: 30rem;
+}
+
+
+.ad-form {
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-section {
+  padding: 20px;
+  background: #f8b8da1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   
-  h1 {
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 36px;
-  }
-  
-  .large-form {
-    width: 80%;
+  border: 1px solid #f361af83;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #46363e;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #444;
+  display: block;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #fcbadd;
+  background: #fff5f9;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+.upload-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #f361af;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-box {
+  width: 150px;
+  height: 150px;
+  background-color: #fff5f9;
+  border: 2px dashed #fcbadd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  background-color: #fcbadd;
+  border-color: #f361af;
+}
+
+.submit-btn {
+  padding: 15px 30px;
+  background-color: #F361AF;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+  background-color: #ec2c92;
+}
+
+/* Stil za sekcije poredane horizontalno */
+.form-row-section {
+  display: flex;
+  justify-content: space-between; /* Prostor između sekcija */
+  gap: 20px; /* Razmak između sekcija */
+}
+
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+  text-align: left;  /* Poravnanje u levi ugao */
+  margin-left: 0;   
+  margin-top: 8px; /* Osigurava da bude potpuno u levom kutu */
+}
+
+
+input, select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-wrapper {
+    display: flex;
     max-width: 1200px;
-    margin: auto;
-    padding: 40px;
-    background: #eb62b705; /* Svetlo plava boja */
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.steps-sidebar {
+  width: 25%;
+  background:  #f3dae8; /* Svetlija roze boja sa gradijentom */
+  border-right: 2px solid #f8b0d0; /* Svetla roze nijansa za granicu */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Suptilni senke za dublji izgled */
+}
+
+.step {
+  font-size: 18px;
+  font-weight: bold;
+  color: #242020; /* Bela boja teksta za dobar kontrast */
+  padding: 15px;
+  border-radius: 5px;
+  background: #fdf6fa; /* Lagana tamno-ružičasta pozadina */
+  text-align: center;
+  transition: background 0.3s ease; /* Glatke animacije za promene boje */
+}
+
+.step:hover {
+  background: #e294be; /* Promena pozadine na tamniji ton kada se pređe mišem */
+}
+
+
+.ad-form {
+    width: 75%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-section {
+    background: #fff;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-  
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  label {
-    display: block;
-    font-size: 16px;
+.section-title {
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
-    background: #eb62b705; /* Svetlo plava boja */
-    
-  }
-  
-  input, textarea, select {
-    background-color: #fcbadd3d; /* Svetlo roza pozadina */
-    border: 2px solid #fcbadd; /* Roza boja okvira */
-    color: #333; /* Boja teksta */
-    padding: 15px; /* Povećanje unutrašnjih margina */
-    border-radius: 5px;
-    font-size: 16px;
-    width: 100%; /* Polja će zauzimati celu širinu form-grupe */
-    height: 50px; /* Povećava visinu polja (osim textarea) */
-    box-sizing: border-box; /* Osigurava da padding ne utiče na širinu */
+    color: #222425;
+    margin-bottom: 15px;
 }
 
-textarea {
-    height: 150px; /* Specifična visina za textarea */
-    resize: none; /* Sprečavanje promene veličine */
+input, textarea, select {
+  width: 80%;  /* Inputi, textareas, i selecti zauzimaju 100% širine roditeljskog elementa */
+  padding: 12px; /* Veći razmak unutar inputa */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  margin-bottom: 15px;  /* Razmak između form elemenata */
+  justify-content: center;
 }
 
-  
-  .submit-btn {
+.submit-btn {
+    padding: 15px 30px;
     background-color: #F361AF;
     color: white;
-    border: none;
-    padding: 15px 30px;
     font-size: 18px;
     border-radius: 5px;
+    border: none;
     cursor: pointer;
-  }
-  
-  .submit-btn:hover {
-    background-color: #f1409fa6;
-  }
-  
+    transition: background 0.3s;
+}
 
-  .upload-box {
-    width: 200px;
-    height: 200px;
-    background-color: #fcbadd9a; /* Light pink background */
-    border: 2px dashed #fcbadd; /* Pink dashed border */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    text-align: center;
-  }
-  
-  .upload-box:hover {
-    background-color: #fcbadd; /* Darker pink background on hover */
-    border-color: #f361af; /* Darker pink border on hover */
-  }
-  
-  .upload-icon {
-    font-size: 40px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px; /* Space between icon and text */
-  }
-  
-  .upload-text {
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  
+.submit-btn:hover {
+    background-color: #1a5a91;
+}
