@@ -11,6 +11,10 @@ const adSchema = new mongoose.Schema({
   },
   description: String,
   condition: {
+
+
+
+    
     type: String,
     enum: ['new', 'used'],
     default: 'new',

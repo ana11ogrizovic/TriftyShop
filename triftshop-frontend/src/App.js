@@ -10,6 +10,8 @@ import Home from './pages/home/Home';
 import Cart from './pages/cart/Cart';
 import EditProfile from './pages/editprofile/EditProfile';
 import AdForm from "./components/adForm/AdForm";
+import TShirtPage from './pages/women/clothing/TShirtPage';
+import Women from './pages/Women';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +36,6 @@ function App() {
 
   const shouldDisplayNavMenu = location.pathname !== '/userpanel' && location.pathname !== '/addlisting';
 
-
   return (
     <>
       <Header isLoggedIn={isLoggedIn} userEmail={userEmail} onLogout={handleLogout} />
@@ -47,8 +48,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/addlisting" element={<AdForm />} />
+        <Route path="/women/clothing/t-shirt" element={<TShirtPage />} />
+        <Route path="/women" element={<Women />} />
+
+        {/* Dodaj ostale podstranice ovde */}
       </Routes>
-      {/* Footer se uvek prikazuje */}
       <Footer />
     </>
   );

@@ -62,130 +62,112 @@ const NavMenu = () => {
 
         </li>
         <li
+  onMouseEnter={() => setWomenOpen(true)}
+  onMouseLeave={() => setWomenOpen(false)}
+>
+<Link to="/women" className="menu-item" style={{ fontSize: '17px' }}>
+  Women
+</Link>
+  {isWomenOpen && (
+    <ul className="dropdown">
+      <li
+        onMouseEnter={() => setClothingOpen(true)}
+        onMouseLeave={() => setClothingOpen(false)}
+      >
+        <span className="dropdown-item">Clothing</span>
+        {isClothingOpen && (
+          <ul className="dropdown sub-dropdown">
+            <li className="dropdown-item">
+              <Link to="/women/clothing/t-shirt">T-shirt</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/clothing/shorts">Shorts</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/clothing/jumpers">Jumpers</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/clothing/suits">Suits</Link>
+            </li>
+            {/* Dodaj sve ostale proizvode */}
+          </ul>
+        )}
+      </li>
+      <li
+        onMouseEnter={() => setFootwearOpen(true)}
+        onMouseLeave={() => setFootwearOpen(false)}
+      >
+        <span className="dropdown-item">Shoes</span>
+        {isFootwearOpen && (
+          <ul className="dropdown sub-dropdown">
+            <li className="dropdown-item">
+              <Link to="/women/shoes/boots">Boots</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/shoes/sandals">Sandals</Link>
+            </li>
+            {/* Dodaj ostale podkategorije */}
+          </ul>
+        )}
+      </li>
 
-          onMouseEnter={() => setWomenOpen(true)}
-          onMouseLeave={() => setWomenOpen(false)}
-        >
-          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Women</Link>
-          {isWomenOpen && (
-            <ul className="dropdown">
-              <li
-                onMouseEnter={() => setClothingOpen(true)}
-                onMouseLeave={() => setClothingOpen(false)}
-              >
-                <span className="dropdown-item">Clothing</span>
-                {isClothingOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">T-shirt</li>
-                    <li className="dropdown-item">Shorts</li>
-                    <li className="dropdown-item">Jumpers</li>
-                    <li className="dropdown-item">Suits</li>
-                    <li className="dropdown-item">Skirts</li>
-                    <li className="dropdown-item">Sweaters</li>
-                    <li className="dropdown-item">Dresses</li>
-                    <li className="dropdown-item">Skorts</li>
-                    <li className="dropdown-item">Jumpsuits</li>
-                    <li className="dropdown-item">Blouses</li>
-                    <li className="dropdown-item">Cardigans</li>
-                    <li className="dropdown-item">Tank Tops</li>
-                    <li className="dropdown-item">Blazers</li>
-                    <li className="dropdown-item">Pants</li>
-                    <li className="dropdown-item">Leggings</li>
-                    <li className="dropdown-item">Jackets</li>
-                    <li className="dropdown-item">Coats</li>
-                  </ul>
+      {/* Care Dropdown */}
+      <li
+        onMouseEnter={() => setCareOpen(true)}
+        onMouseLeave={() => setCareOpen(false)}
+      >
+        <span className="dropdown-item">Beauty & Care</span>
+        {isCareOpen && (
+          <ul className="dropdown sub-dropdown">
+            <li className="dropdown-item">
+              <Link to="/women/beauty-and-care/face-creams">Face Creams</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/beauty-and-care/shampoo">Shampoo</Link>
+            </li>
+            {/* Dodaj ostale proizvode */}
+          </ul>
+        )}
+      </li>
 
-                )}
-              </li>
-              <li
-                onMouseEnter={() => setFootwearOpen(true)}
-                onMouseLeave={() => setFootwearOpen(false)}
-              >
-                <span className="dropdown-item">Shoes</span>
-                {isFootwearOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">Boots</li>
-                    <li className="dropdown-item">Sandals</li>
-                    <li className="dropdown-item">Heels</li>
-                    <li className="dropdown-item">Sneakers</li>
-                    <li className="dropdown-item">Flats</li>
-                    <li className="dropdown-item">Loafers</li>
-                    <li className="dropdown-item">Wedges</li>
-                    <li className="dropdown-item">Slippers</li>
-                  </ul>
-                )}
-              </li>
+      <li
+        onMouseEnter={() => setFashionAccessoriseOpen(true)}
+        onMouseLeave={() => setFashionAccessoriseOpen(false)}
+      >
+        <span className="dropdown-item">Fashion Accessories</span>
+        {isFashionAccessoriseOpen && (
+          <ul className="dropdown sub-dropdown">
+            <li className="dropdown-item">
+              <Link to="/women/accessories/jewelry">Jewelry</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/accessories/sunglasses">Sunglasses</Link>
+            </li>
+            {/* Dodaj ostale proizvode */}
+          </ul>
+        )}
+      </li>
 
-              {/* Care Dropdown */}
-              <li
-                onMouseEnter={() => setCareOpen(true)}
-                onMouseLeave={() => setCareOpen(false)}
-              >
-                <span className="dropdown-item">Beauty & Care</span>
-                {isCareOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">Face Creams</li>
-                    <li className="dropdown-item">Shampoo</li>
-                    <li className="dropdown-item">Conditioners</li>
-                    <li className="dropdown-item">Hair Masks</li>
-                    <li className="dropdown-item">Body Lotion</li>
-                    <li className="dropdown-item">Perfume</li>
-                    <li className="dropdown-item">Makeup</li>
-                    <li className="dropdown-item">Nail Care</li>
-                  </ul>
-                )}
-              </li>
-
-              <li
-                onMouseEnter={() => setFashionAccessoriseOpen(true)}
-                onMouseLeave={() => setFashionAccessoriseOpen(false)}
-              >
-                <span className="dropdown-item">Fashion Accessories</span>
-                {isFashionAccessoriseOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">Jewelry</li>
-                    <li className="dropdown-item">Sunglasses</li>
-                    <li className="dropdown-item">Hats</li>
-                    <li className="dropdown-item">Scarves</li>
-                    <li className="dropdown-item">Belts</li>
-                    <li className="dropdown-item">Watches</li>
-                    <li className="dropdown-item">Hair Accessories</li>
-                    <li className="dropdown-item">Gloves</li>
-                    <li className="dropdown-item">Wallets</li>
-                    <li className="dropdown-item">Headbands</li>
-                    <li className="dropdown-item">Ties & Bow Ties</li>
-                    <li className="dropdown-item">Leggings</li>
-                  </ul>
-
-                )}
-              </li>
-
-              <li
-                onMouseEnter={() => setBagsOpen(true)}
-                onMouseLeave={() => setBagsOpen(false)}
-              >
-                <span className="dropdown-item">Bags</span>
-                {isBagsOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">Handbags</li>
-                    <li className="dropdown-item">Tote Bags</li>
-                    <li className="dropdown-item">Clutch Bags</li>
-                    <li className="dropdown-item">Backpacks</li>
-                    <li className="dropdown-item">Crossbody Bags</li>
-                    <li className="dropdown-item">Shoulder Bags</li>
-                    <li className="dropdown-item">Duffel Bags</li>
-                    <li className="dropdown-item">Sling Bags</li>
-                    <li className="dropdown-item">Laptop Bags</li>
-                    <li className="dropdown-item">Beach Bags</li>
-                    <li className="dropdown-item">Wallets</li>
-                    <li className="dropdown-item">Messenger Bags</li>
-                  </ul>
-                )}
-              </li>
-            </ul>
-          )}
-        </li>
-
+      <li
+        onMouseEnter={() => setBagsOpen(true)}
+        onMouseLeave={() => setBagsOpen(false)}
+      >
+        <span className="dropdown-item">Bags</span>
+        {isBagsOpen && (
+          <ul className="dropdown sub-dropdown">
+            <li className="dropdown-item">
+              <Link to="/women/bags/handbags">Handbags</Link>
+            </li>
+            <li className="dropdown-item">
+              <Link to="/women/bags/tote-bags">Tote Bags</Link>
+            </li>
+            {/* Dodaj ostale proizvode */}
+          </ul>
+        )}
+      </li>
+    </ul>
+  )}
+</li>
 
 
 

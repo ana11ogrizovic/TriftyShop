@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const User = require('./models/User');
+const Product = require('./models/Product'); // Importuj Product model
 const adRoutes = require('./routes/adRoutes'); // Rute za oglase
 
 dotenv.config();
@@ -19,9 +20,9 @@ app.use(cors({
 }));
 app.use(bodyParser.json());  // Važno da bude pre ruta!
 
-// 🔹 Povezivanje sa MongoDB
+// 🔹 Povezivanje sa MongoDB (povezivanje sa "triftyShop" bazom i kolekcijom "ads")
 mongoose
-  .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME, useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI, { dbName: 'triftyShop', useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch((err) => console.error('❌ Database connection error:', err));
 
@@ -79,8 +80,106 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
+// 🔹 API endpoint za dodavanje proizvoda u bazu (dodavanje u "ads" kolekciju)
+app.post('/api/ads', async (req, res) => {
+  const { images, itemName, price, priceOption, description, condition, deliveryMethod, category, group, subgroup, advertiserName, contactInfo } = req.body;
+  try {
+    const newProduct = new Product({
+      images,
+      itemName,
+      price,
+      priceOption,
+      description,
+      condition,
+      deliveryMethod,
+      category,
+      group,
+      subgroup,
+      advertiserName,
+      contactInfo,
+    });
+
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(400).json({ message: 'Failed to add product' });
+  }
+});
+
+// 🔹 Ruta za vraćanje svih proizvoda
+// Ruta za vraćanje svih proizvoda
+app.get('/api/ads', async (req, res) => {
+  try {
+    const products = await Product.find();  // Vraća sve proizvode iz baze
+    res.json(products);  // Vraćanje proizvoda u JSON formatu
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.get('/api/ads/tshirt', async (req, res) => {
+  try {
+    const products = await Product.find({ subgroup: 'T-shirt' });
+    res.json(products);
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    res.status(500).json({ error: 'Error fetching products' });
+  }
+});
+
+// Ruta za filtriranje proizvoda prema kategoriji, grupi i subgrupi
+app.get('/api/ads/:category/:group', async (req, res) => {
+  const { category, group } = req.params; // Prima parametre iz URL-a (category i group)
+
+  try {
+    const products = await Product.find({ category, group });  // Filtriranje proizvoda prema kategoriji i grupi
+    res.json(products);  // Vraća filtrirane proizvode u JSON formatu
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+// Dodajemo rutu za profil korisnika
+app.get('/api/user/profile', async (req, res) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({
+      fullName: user.fullName,
+      email: user.email,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: 'Failed to authenticate token' });
+  }
+});
+
+// Ruta za filtriranje proizvoda prema kategoriji 'Women'
+app.get('/api/ads/women', async (req, res) => {
+  try {
+    const products = await Product.find({ category: 'Women' });  // Filtriranje proizvoda samo za kategoriju "Women"
+    res.json(products);  // Vraćanje proizvoda ka frontendu
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // 🔹 Povezivanje rute za oglase
-app.use('/api/ads', adRoutes);
+app.use('/api/ads', adRoutes);  // Povezivanje sa adRoutes fajlom
 
 // 🔹 POKRETANJE SERVERA
 const PORT = process.env.PORT || 5000;
