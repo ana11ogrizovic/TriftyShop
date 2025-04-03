@@ -21,7 +21,7 @@ const ProductCard = ({ image, title, description, price, oldPrice }) => {
     >
       <img src={image} alt={title} style={{
         width: '100%',
-        height: 'auto',
+        height: '21rem',
         borderRadius: '8px',
         marginBottom: '1rem'
       }} />
@@ -139,17 +139,16 @@ const WomenProductsPage = () => {
 
   return (
     <div>
-      <h1>{subgroup ? `${subgroup} Products` : 'All Women Products'}</h1>
       {loading && <p>Loading products...</p>}
       {error && <p>{error}</p>}
-      <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '1rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2em', justifyContent: 'center', alignItems: 'center' }}>
         {products.length === 0 ? (
           <p>No products found</p>
         ) : (
           products.map((product) => (
             <ProductCard
               key={product._id}
-              image={product.image || 'default-image.jpg'}  // Dodaj defaultnu sliku ako nema slike proizvoda
+              image={product.images && product.images.length > 0 ? product.images[0] : '/images/imgimsg.png'} // Ako nema slika, koristi defaultnu
               title={product.itemName}
               description={product.description}
               price={product.price}
@@ -160,6 +159,7 @@ const WomenProductsPage = () => {
       </div>
     </div>
   );
+  
 };
 
 export default WomenProductsPage;
