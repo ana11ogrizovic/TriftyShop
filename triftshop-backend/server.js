@@ -8,7 +8,6 @@ const dotenv = require('dotenv');
 const User = require('./models/User');
 const Product = require('./models/Product'); // Importuj Product model
 const adRoutes = require('./routes/adRoutes'); // Rute za oglase
-
 dotenv.config();
 const app = express();
 
