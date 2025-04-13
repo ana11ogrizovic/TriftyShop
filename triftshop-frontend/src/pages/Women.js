@@ -89,6 +89,7 @@ const ProductCard = ({ image, title, description, price, oldPrice }) => {
 
 const WomenProductsPage = () => {
   const { category, group, subgroup } = useParams();
+  const BASE_URL = "http://localhost:5000/";
 
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -148,7 +149,12 @@ const WomenProductsPage = () => {
           products.map((product) => (
             <ProductCard
               key={product._id}
-              image={product.images && product.images.length > 0 ? product.images[0] : '/images/imgimsg.png'} // Ako nema slika, koristi defaultnu
+              image={
+                product.images && product.images.length > 0
+                  ? `${BASE_URL}${product.images[0]}`
+                  : '/images/imgimsg.png'
+              }
+              // Ako nema slika, koristi defaultnu
               title={product.itemName}
               description={product.description}
               price={product.price}

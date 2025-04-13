@@ -5,9 +5,13 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 const User = require('./models/User');
-const Product = require('./models/Product'); // Importuj Product model
-const adRoutes = require('./routes/adRoutes'); // Rute za oglase
+const Product = require('./models/Product');
+const adRoutes = require('./routes/adRoutes');  // Rute za oglase
+
 dotenv.config();
 const app = express();
 
@@ -18,8 +22,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(bodyParser.json());  // Važno da bude pre ruta!
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/ads', adRoutes);
 
-// 🔹 Povezivanje sa MongoDB (povezivanje sa "triftyShop" bazom i kolekcijom "ads")
+
+
+// 🔹 Povezivanje sa MongoDB
 mongoose
   .connect(process.env.MONGO_URI, { dbName: 'triftyShop', useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ Connected to MongoDB'))
@@ -56,20 +64,17 @@ app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Pronađi korisnika u bazi
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Nema korisnika u bazi' });
     }
 
-    // Uporedi lozinku sa sačuvanim hashom
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Generiši JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ message: 'Login successful', token });
@@ -79,69 +84,32 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// 🔹 API endpoint za dodavanje proizvoda u bazu (dodavanje u "ads" kolekciju)
-app.post('/api/ads', async (req, res) => {
-  const { images, itemName, price, priceOption, description, condition, deliveryMethod, category, group, subgroup, advertiserName, contactInfo } = req.body;
-  try {
-    const newProduct = new Product({
-      images,
-      itemName,
-      price,
-      priceOption,
-      description,
-      condition,
-      deliveryMethod,
-      category,
-      group,
-      subgroup,
-      advertiserName,
-      contactInfo,
-    });
 
-    await newProduct.save();
-    res.status(201).json(newProduct);
-  } catch (err) {
-    res.status(400).json({ message: 'Failed to add product' });
-  }
-});
+// 🔹 Ruta za filtriranje proizvoda prema kategoriji
+app.get('/api/ads/:category/:group', async (req, res) => {
+  const { category, group } = req.params;
 
-// 🔹 Ruta za vraćanje svih proizvoda
-// Ruta za vraćanje svih proizvoda
-app.get('/api/ads', async (req, res) => {
   try {
-    const products = await Product.find();  // Vraća sve proizvode iz baze
-    res.json(products);  // Vraćanje proizvoda u JSON formatu
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-app.get('/api/ads/tshirt', async (req, res) => {
-  try {
-    const products = await Product.find({ subgroup: 'T-shirt' });
+    const products = await Product.find({ category, group });
     res.json(products);
   } catch (err) {
-    console.error('Error fetching products:', err);
-    res.status(500).json({ error: 'Error fetching products' });
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
-// Ruta za filtriranje proizvoda prema kategoriji, grupi i subgrupi
-app.get('/api/ads/:category/:group', async (req, res) => {
-  const { category, group } = req.params; // Prima parametre iz URL-a (category i group)
-
+// Ruta za filtriranje proizvoda prema kategoriji 'Women'
+app.get('/api/ads/women', async (req, res) => {
   try {
-    const products = await Product.find({ category, group });  // Filtriranje proizvoda prema kategoriji i grupi
-    res.json(products);  // Vraća filtrirane proizvode u JSON formatu
+    const products = await Product.find({ category: 'Women' });
+    res.json(products);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
 
-
-// Dodajemo rutu za profil korisnika
+// 🔹 Dodajemo rutu za profil korisnika
 app.get('/api/user/profile', async (req, res) => {
   const token = req.headers['authorization'];
 
@@ -166,19 +134,6 @@ app.get('/api/user/profile', async (req, res) => {
   }
 });
 
-// Ruta za filtriranje proizvoda prema kategoriji 'Women'
-app.get('/api/ads/women', async (req, res) => {
-  try {
-    const products = await Product.find({ category: 'Women' });  // Filtriranje proizvoda samo za kategoriju "Women"
-    res.json(products);  // Vraćanje proizvoda ka frontendu
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// 🔹 Povezivanje rute za oglase
-app.use('/api/ads', adRoutes);  // Povezivanje sa adRoutes fajlom
 
 // 🔹 POKRETANJE SERVERA
 const PORT = process.env.PORT || 5000;

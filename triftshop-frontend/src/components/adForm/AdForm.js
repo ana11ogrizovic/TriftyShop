@@ -14,7 +14,7 @@ const categories = [
   },
   {
     name: 'Men',
-    subCatgroupsegories: [
+    groups: [
       { label: 'Clothing', options: ['Suits', 'Jacket', 'T-shirts', 'Shirts', 'Jeans', 'Shorts', 'Sweaters', 'Blazers', 'Pants', 'Jumpers', 'Hoodies', 'Trousers', 'Vests', 'Coats', 'Chinos'] },
       { label: 'Shoes', options: ['Boots', 'Sneakers', 'Flats', 'Slippers'] },
       { label: 'Men Care', options: ['Shaving Cream', 'Aftershave', 'Face Wash', 'Shampoo', 'Conditioners', 'Hair Gel', 'Beard Oil', 'Perfume', 'Deodorants', 'Body Lotion', 'Face Creams'] },
@@ -121,6 +121,7 @@ const AdForm = () => {
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
+  
     setFormData((prevData) => {
       if (prevData.images.length >= 8) {
         alert("Maximum number of images reached (8).");
@@ -130,22 +131,34 @@ const AdForm = () => {
       return { ...prevData, images: newImages };
     });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-
+  
+    // ➕ Kreiramo FormData objekat
+    const data = new FormData();
+  
+    // ➕ Dodamo slike (multiple)
+    formData.images.forEach((img) => {
+      data.append("images", img);
+    });
+  
+    // ➕ Dodamo ostala polja
+    for (const key in formData) {
+      if (key !== "images") {
+        data.append(key, formData[key]);
+      }
+    }
+  
     try {
       const response = await fetch("http://localhost:5000/api/ads/add", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: data, // 🔥 Važno! NEMA Content-Type!
       });
-
-      const data = await response.json();
-
+  
+      const result = await response.json();
+  
       if (response.ok) {
         alert("Ad posted successfully!");
         setFormData({
@@ -158,17 +171,19 @@ const AdForm = () => {
           deliveryMethod: "pickup",
           category: "",
           group: "",
+          subgroup: "",
           advertiserName: "",
           contactInfo: "",
-        }); // Reset form data
+        });
       } else {
-        alert("Error posting ad: " + data.message);
+        alert("Greška: " + result.message);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error posting ad");
+      alert("Greška pri postavljanju oglasa.");
     }
   };
+  
 
 
 
@@ -187,32 +202,34 @@ const AdForm = () => {
         {/* Form sections */}
         <form className="ad-form" onSubmit={handleSubmit}>
           {/* Section 1: Image Upload */}
-          {activeStep === 1 && (
-            <div className="form-section">
-              <h2 className="section-title">Add Images</h2>
-              <div className="form-group">
-                <div className="upload-container">
-                  {formData.images.map((img, index) => (
-                    <div key={index} className="image-preview">
-                      <img src={URL.createObjectURL(img)} alt={`preview-${index}`} />
-                    </div>
-                  ))}
-                  <div className="upload-box" onClick={() => document.getElementById("file-input").click()}>
-                    <span className="upload-icon">+</span>
-                    <span className="upload-text">Upload Images</span>
-                  </div>
-                </div>
-                <input
-                  id="file-input"
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  style={{ display: "none" }}
-                />
-              </div>
-            </div>
-          )}
+          {/* Section 1: Image Upload */}
+{activeStep === 1 && (
+  <div className="form-section">
+    <h2 className="section-title">Add Images</h2>
+    <div className="form-group">
+      <div className="upload-container">
+        {formData.images.length > 0 && (
+          <div className="image-preview">
+            <img src={URL.createObjectURL(formData.images[0])} alt="Product" />
+          </div>
+        )}
+        <div className="upload-box" onClick={() => document.getElementById("file-input").click()}>
+          <span className="upload-icon">+</span>
+          <span className="upload-text">Upload Images</span>
+        </div>
+      </div>
+      <input
+        id="file-input"
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={handleFileUpload}
+        style={{ display: "none" }}
+      />
+    </div>
+  </div>
+)}
+
 
           {/* Section 2: Item Details */}
           {activeStep === 2 && (

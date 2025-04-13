@@ -15,7 +15,9 @@
   .nav-menu > ul > li {
     display: inline-block;
     position: relative;
+    text-decoration: none;
   }
+  
   
   .menu-item,
   .dropdown-item {
@@ -29,7 +31,20 @@
   .dropdown-item {
     display: block;
     padding: 8px 15px;
+    
   }
+  
+/* Stil za linkove unutar dropdown lista */
+.dropdown-item a {
+  color: #2a2b2c; /* Postavi boju linka na plavu */
+  text-decoration: none; /* Ukloni podvlačenje */
+}
+
+.dropdown-item a:hover {
+  color: #000000; /* Postavi tamniju plavu boju prilikom hovera */
+  text-decoration: none; /* Ukloni podvlačenje prilikom hovera */
+}
+
   
   .menu-item:hover,
   .dropdown-item:hover {
