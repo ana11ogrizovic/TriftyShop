@@ -1,39 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const ProductsPage = () => {
-  const { subCategory } = useParams();
+
+const ProductsList = () => {
+  const { category, group, subgroup } = useParams(); // ispravni parametri
   const [products, setProducts] = useState([]);
-  const BASE_URL = "http://localhost:5000/"; // Tvoj backend URL
+  const BASE_URL = "http://localhost:5000/"; // backend
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`/api/ads/${subCategory}`);
+        const response = await fetch(`/api/ads/${category}/${group}/${subgroup}`);
         const data = await response.json();
+        console.log(data); // Proveri podatke u konzoli
         setProducts(data);
       } catch (error) {
         console.error("Greška prilikom učitavanja proizvoda:", error);
       }
     };
-
+    
     fetchProducts();
-  }, [subCategory]);
+  }, [category, group, subgroup]);
+  
+  
 
   return (
     <div>
-      <h1>{subCategory} Products</h1>
+      <h1>{subgroup} Products</h1>
       <div className="products-list">
         {products.length > 0 ? (
           products.map((product) => {
             const imageUrl = `${BASE_URL}${product.images[0]}`;
-            console.log("Image URL:", imageUrl); // Ovde vidiš tačnu putanju
-
             return (
-              <div key={product.id} className="product-item">
+              <div key={product._id} className="product-item">
                 <img
                   src={imageUrl}
-                  alt={product.name}
+                  alt={product.itemName}
                   style={{
                     width: "100%",
                     height: "21rem",
@@ -42,9 +45,9 @@ const ProductsPage = () => {
                     objectFit: "cover"
                   }}
                 />
-                <h2>{product.name}</h2>
+                <h2>{product.itemName}</h2>
                 <p>{product.description}</p>
-                <span>{product.price}</span>
+                <span>{product.price} RSD</span>
               </div>
             );
           })
@@ -56,4 +59,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductsList;

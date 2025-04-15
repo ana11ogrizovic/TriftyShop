@@ -10,8 +10,15 @@ import Home from './pages/home/Home';
 import Cart from './pages/cart/Cart';
 import EditProfile from './pages/editprofile/EditProfile';
 import AdForm from "./components/adForm/AdForm";
-import TShirtPage from './pages/women/clothing/TShirtPage';
-import Women from './pages/Women';
+import Women from './pages/women/Women';
+import ProductsList from './components/productsPage/ProductsPage';
+import ProductsBySubgroupPage from './components/ProductsBySubgroupPage/ProductsBySubgroupPage';
+import CategoryProductsPage from './components/ProductsBySubgroupPage/ProductsBySubgroupPage';
+import MenProduct from './pages/women/MenProducts ';
+import ChildrenProducts from './pages/women/ChildrenProducts';
+import HouseProducts from './pages/women/HouseProducts';
+import PetsProducts from './pages/women/PetsProducts';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,8 +55,18 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/addlisting" element={<AdForm />} />
-        <Route path="/women/clothing/t-shirt" element={<TShirtPage />} />
         <Route path="/women" element={<Women />} />
+        <Route path="/women/clothing/:subgroup" element={<ProductsBySubgroupPage />} />
+        <Route path="/women/:category/:group/:subgroup" element={<ProductsList />} />
+        <Route path="/:category/:group/:subgroup" element={<CategoryProductsPage />} />
+        <Route path="/women/beauty/:group/:subgroup" element={<ProductsBySubgroupPage />} />
+        <Route path="/women/accessories/:group/:subgroup" element={<ProductsBySubgroupPage />} />
+        <Route path="/women/bags/:group/:subgroup" element={<ProductsBySubgroupPage />} />
+        <Route path="/men" element={<MenProduct />} />
+        <Route path="/Children" element={<ChildrenProducts />} />
+        <Route path="/House" element={<HouseProducts />} />
+        <Route path="/Pets" element={<PetsProducts />} />
+
 
         {/* Dodaj ostale podstranice ovde */}
       </Routes>

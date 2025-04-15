@@ -25,9 +25,15 @@ router.post('/add', upload.array('images', 8), async (req, res) => {
       deliveryMethod, group, subgroup, advertiserName, contactInfo
     } = req.body;
 
+    // Formatiraj group i subgroup
+    const formattedGroup = group.toLowerCase().replace(/ & /g, 'and').replace(/ /g, '-');
+    const formattedSubgroup = subgroup.toLowerCase().replace(/ /g, '-');
+
+
+
+
+    // Dobavljanje putanja slika
     const imagePaths = req.files.map(file => file.path.replace(/\\/g, '/'));
-
-
 
     const newProduct = new Product({
       itemName,
@@ -38,8 +44,8 @@ router.post('/add', upload.array('images', 8), async (req, res) => {
       priceOption,
       condition,
       deliveryMethod,
-      group,
-      subgroup,
+      group: formattedGroup,  // Koristi formatiranu vrednost za group
+      subgroup: formattedSubgroup,  // Koristi formatiranu vrednost za subgroup
       advertiserName,
       contactInfo
     });
@@ -51,6 +57,7 @@ router.post('/add', upload.array('images', 8), async (req, res) => {
     res.status(500).json({ message: 'Failed to add product', error: error.message });
   }
 });
+
 
 // 🔸 Dohvatanje svih proizvoda
 router.get('/', async (req, res) => {

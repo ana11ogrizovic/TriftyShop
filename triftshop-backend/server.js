@@ -84,6 +84,35 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
+app.get('/api/ads/women/:category/:group/:subgroup', async (req, res) => {
+  const { category, group, subgroup } = req.params;
+  try {
+    const products = await WomenProduct.find({
+      category: category,
+      group: group,
+      subgroup: subgroup
+    });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching filtered products' });
+  }
+});
+
+app.get('/api/ads/men/:category/:group/:subgroup', async (req, res) => {
+  const { category, group, subgroup } = req.params;
+  try {
+    const products = await MenProduct.find({
+      category: category,
+      group: group,
+      subgroup: subgroup
+    });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching filtered products' });
+  }
+});
+
+
 
 // 🔹 Ruta za filtriranje proizvoda prema kategoriji
 app.get('/api/ads/:category/:group', async (req, res) => {
@@ -108,6 +137,57 @@ app.get('/api/ads/women', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+app.get('/api/ads/men', async (req, res) => {
+  try {
+    console.log('Fetching products for men...');
+    const products = await Product.find({ category: 'Men' });
+    console.log(products);  // Proveri šta vraća
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ message: 'Error fetching men products' });
+  }
+});
+
+// Ruta za decu
+app.get('/api/ads/children', async (req, res) => {
+  try {
+    console.log('Fetching products for men...');
+    const products = await Product.find({ category: { $regex: /^children$/i } });
+    console.log('Children products:', products);
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching children products:', error);
+    res.status(500).json({ message: 'Error fetching children products' });
+  }
+});
+
+// Ruta za kuću
+app.get('/api/ads/house', async (req, res) => {
+  try {
+    const products = await Product.find({ category: { $regex: /^house$/i } });
+    console.log('House products:', products);
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching house products:', error);
+    res.status(500).json({ message: 'Error fetching house products' });
+  }
+});
+
+// Ruta za ljubimce
+app.get('/api/ads/pets', async (req, res) => {
+  try {
+    const products = await Product.find({ category: { $regex: /^pets$/i } });
+    console.log('Pets products:', products);
+    res.json(products);
+  } catch (error) {
+    console.error('Error fetching pets products:', error);
+    res.status(500).json({ message: 'Error fetching pets products' });
+  }
+});
+
+
 
 // 🔹 Dodajemo rutu za profil korisnika
 app.get('/api/user/profile', async (req, res) => {
