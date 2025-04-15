@@ -20,6 +20,7 @@ import HouseProducts from './pages/women/HouseProducts';
 import PetsProducts from './pages/women/PetsProducts';
 import Forum from './pages/forum/Forum';
 import ContactUs from './pages/contact/ContactUs ';
+import Services from './pages/services/Services';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -69,7 +70,7 @@ function App() {
         <Route path="/Pets" element={<PetsProducts />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/contact" element={<ContactUs />} />
-
+        <Route path="/services" element={<Services />} />
         {/* Dodaj ostale podstranice ovde */}
       </Routes>
       <Footer />
