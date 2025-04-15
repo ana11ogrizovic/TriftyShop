@@ -1,0 +1,72 @@
+/* General page layout */
+.forum-wrapper {
+    width: 55%; /* Expanding to take 70% of the screen */
+    margin: 0 auto; /* Centering the content */
+    font-family: 'Arial', sans-serif;
+    padding: 20px 0;
+  }
+  
+  /* Banner image */
+  .banner-image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Title styling */
+  .forum-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left; /* Aligns the title to the left */
+    color: #2c2427;
+    margin-bottom: 30px;
+  }
+  
+
+  
+  .question-button:hover {
+    background-color: #f09dbe;
+  }
+  
+  /* Answer styling */
+  .answer {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-left: 4px solid #ff6fa5; /* Subtle vertical line for emphasis */
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  /* Question container spacing */
+  .question-container {
+    margin-bottom: 25px;
+  }
+  
+  .question-button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #241e1e;
+    background-color: #f361af63;
+    border: none;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes the arrow to the far right */
+  }
+  
+  .arrow-icon {
+    margin-left: auto; /* Ensures arrow stays at the far-right edge */
+    transition: transform 0.3s ease;
+  }
+  
+  .rotated {
+    transform: rotate(90deg); /* Rotate the arrow when active */
+  }
+  
