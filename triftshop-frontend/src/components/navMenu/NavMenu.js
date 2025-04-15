@@ -301,7 +301,7 @@ const NavMenu = () => {
           onMouseEnter={() => setHomeOpen(true)}
           onMouseLeave={() => setHomeOpen(false)}
         >
-          <Link to="/" className="menu-item" style={{ fontSize: '17px' }}>Contact</Link>
+          <Link to="/contact" className="menu-item" style={{ fontSize: '17px' }}>Contact</Link>
 
         </li>
 
