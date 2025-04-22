@@ -16,7 +16,7 @@ const router = express.Router();
 const authRoutes = require('./routes/auth'); // Importuj rute za autentifikaciju
 const verifyToken = require('./middleware/authMiddleware');
 // server.js
-const messagesRoutes = require('./routes/messages'); 
+const messageRoutes = require('./routes/messages');
 
 
 dotenv.config();
@@ -25,7 +25,7 @@ const app = express();
 // 🔹 Middleware
 app.use(cors({
   origin: 'http://localhost:3000',  // Podesite ovu vrednost prema vašem frontend-u
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(bodyParser.json());  // Važno da bude pre ruta!
@@ -33,7 +33,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/ads', adRoutes);
 app.use(express.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/messages', messagesRoutes);
+app.use('/api/messages', messageRoutes);
 
 
 
@@ -115,7 +115,7 @@ app.post('/api/auth/login', async (req, res) => {
     console.log('Generated token:', token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log('Decoded token:', decoded);
-    
+
 
 
     // Vraćanje odgovora
@@ -128,14 +128,12 @@ app.post('/api/auth/login', async (req, res) => {
         fullName: user.fullName,
       }
     });
-        
+
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
-
-
 
 
 
@@ -186,6 +184,69 @@ app.get('/api/messages/:userId', async (req, res) => {
   }
 });
 
+app.post('/api/messages/sendMessage', async (req, res) => {
+  try {
+    const { senderId, receiverId, productId, content } = req.body;
+
+    // Ovdje možete proveriti da li su podaci ispravni
+    if (!senderId || !receiverId || !content) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    // Logika za slanje poruke u bazu podataka
+    const newMessage = new Message({ senderId, receiverId, productId, content });
+    await newMessage.save();
+
+    return res.status(200).json({ message: 'Message sent successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error sending message' });
+  }
+});
+
+
+app.get('/api/products/user/:userEmail', async (req, res) => {
+  try {
+    const { userEmail } = req.params;
+    console.log('Dohvatanje proizvoda za korisnika:', userEmail);  // Proveri koji e-mail se koristi
+    const userProducts = await Product.find({ contactInfo: userEmail });
+    res.json(userProducts);
+  } catch (error) {
+    console.error("Greška pri dohvatanju proizvoda:", error);
+    res.status(500).send("Došlo je do greške na serveru.");
+  }
+});
+
+router.get('/user/:email', async (req, res) => {
+  try {
+    const email = req.params.email;
+    console.log("Fetching products for email:", email);
+
+    const products = await Product.find({ contactInfo: email }); // ✅ Sada traži po emailu
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Error fetching user products:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
+
+app.delete('/api/products/:productId', async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Proizvod nije pronađen." });
+    }
+
+    res.status(200).json({ message: "Proizvod je uspešno obrisan." });
+  } catch (error) {
+    console.error("Greška pri brisanju proizvoda:", error);
+    res.status(500).send("Došlo je do greške pri brisanju proizvoda.");
+  }
+});
 
 
 // 🔹 Pokretanje servera

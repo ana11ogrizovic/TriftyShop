@@ -8,13 +8,8 @@ const NavMenu = () => {
   const [isClothingOpen, setClothingOpen] = useState(false);
   const [isFootwearOpen, setFootwearOpen] = useState(false);
   const [isCareOpen, setCareOpen] = useState(false);
-  const [isFootwearMenOpen, setFootwearMenOpen] = useState(false);
   const [isFashionAccessoriseOpen, setFashionAccessoriseOpen] = useState(false);
   const [isBagsOpen, setBagsOpen] = useState(false);
-  const [isMenOpen, setMenOpen] = useState(false);
-  const [isClothingMenOpen, setClothingMenOpen] = useState(false);
-  const [isWatchespen, setWatchesOpen] = useState(false);
-  const [isBagsMenOpen, setBagsMenOpen] = useState(false);
   const [isHomeOpen, setHomeOpen] = useState(false);
 
 
@@ -161,119 +156,6 @@ const NavMenu = () => {
                     </li>
                     <li className="dropdown-item">
                       <Link to="/women/bags/Beach Bags">Beach Bags</Link>
-                    </li>
-                  </ul>
-                )}
-              </li>
-            </ul>
-          )}
-        </li>
-
-
-
-
-
-
-
-
-
-
-        <li
-          onMouseEnter={() => setMenOpen(true)}
-          onMouseLeave={() => setMenOpen(false)}
-        >
-          <Link to="/men" className="menu-item" style={{ fontSize: '17px' }}>Men</Link>
-          {isMenOpen && (
-            <ul className="dropdown">
-              <li
-                onMouseEnter={() => setClothingMenOpen(true)}
-                onMouseLeave={() => setClothingMenOpen(false)}
-              >
-                <span className="dropdown-item">Clothing</span>
-                {isClothingMenOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">
-                      <Link to="/men/clothing/suits">Suits</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/clothing/jacket">Jacket</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/clothing/t-shirts">T-shirts</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/clothing/jeans">Jeans</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/clothing/shorts">Shorts</Link>
-                    </li>
-                  </ul>
-
-                )}
-              </li>
-              <li
-                onMouseEnter={() => setFootwearMenOpen(true)}
-                onMouseLeave={() => setFootwearMenOpen(false)}
-              >
-                <span className="dropdown-item">Shoes</span>
-                {isFootwearMenOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">
-                      <Link to="/men/shoes/boots">Boots</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/shoes/sneakers">Sneakers</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/shoes/flats">Flats</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/shoes/slippers">Slippers</Link>
-                    </li>
-                  </ul>
-
-                )}
-              </li>
-
-              <li
-                onMouseEnter={() => setWatchesOpen(true)}
-                onMouseLeave={() => setWatchesOpen(false)}
-              >
-                <span className="dropdown-item"> Watches </span>
-                {isWatchespen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">
-                      <Link to="/men/watches/analog-watches">Analog Watches</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/watches/digital-watches">Digital Watches</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/watches/smart-watches">Smart Watches</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/watches/luxury-watches">Luxury Watches</Link>
-                    </li>
-                  </ul>
-
-                )}
-              </li>
-
-              <li
-                onMouseEnter={() => setBagsMenOpen(true)}
-                onMouseLeave={() => setBagsMenOpen(false)}
-              >
-                <span className="dropdown-item"> Bags </span>
-                {isBagsMenOpen && (
-                  <ul className="dropdown sub-dropdown">
-                    <li className="dropdown-item">
-                      <Link to="/men/bags/backpacks">Backpacks</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/bags/laptop-bags">Laptop Bags</Link>
-                    </li>
-                    <li className="dropdown-item">
-                      <Link to="/men/bags/travel-bags">Travel Bags</Link>
                     </li>
                   </ul>
                 )}

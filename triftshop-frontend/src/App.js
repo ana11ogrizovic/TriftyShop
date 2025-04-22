@@ -14,14 +14,11 @@ import Women from './pages/women/Women';
 import ProductsList from './components/productsPage/ProductsPage';
 import ProductsBySubgroupPage from './components/ProductsBySubgroupPage/ProductsBySubgroupPage';
 import CategoryProductsPage from './components/ProductsBySubgroupPage/ProductsBySubgroupPage';
-import MenProduct from './pages/women/MenProducts ';
-import ChildrenProducts from './pages/women/ChildrenProducts';
-import HouseProducts from './pages/women/HouseProducts';
-import PetsProducts from './pages/women/PetsProducts';
 import Forum from './pages/forum/Forum';
 import ContactUs from './pages/contact/ContactUs ';
 import Services from './pages/services/Services';
 import MessagesPage from './pages/messagesPage/MessagesPage'; // Correct path if needed
+import MyListings from './pages/mylistings/MyListings';
 
 
 function App() {
@@ -78,15 +75,12 @@ function App() {
         <Route path="/women/beauty/:group/:subgroup" element={<ProductsBySubgroupPage />} />
         <Route path="/women/accessories/:group/:subgroup" element={<ProductsBySubgroupPage />} />
         <Route path="/women/bags/:group/:subgroup" element={<ProductsBySubgroupPage />} />
-        <Route path="/men" element={<MenProduct />} />
-        <Route path="/Children" element={<ChildrenProducts />} />
-        <Route path="/House" element={<HouseProducts />} />
-        <Route path="/Pets" element={<PetsProducts />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/messages/:productId" component={MessagesPage} /> {/* Ruta za poruke */}
         <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/listings" element={<MyListings />} />
         {/* Dodaj ostale podstranice ovde */}
       </Routes>
       <Footer />

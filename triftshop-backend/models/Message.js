@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
-  sender: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // ✅ referenca na korisnika
-    required: true
-  },
-  productId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product', // ✅ referenca na proizvod
-    required: true
-  },
-  content: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+    senderId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    receiverId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Message', messageSchema);
+const Message = mongoose.model('Message', messageSchema);
+
+module.exports = Message;
