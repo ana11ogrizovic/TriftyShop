@@ -9,8 +9,43 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [globalError, setGlobalError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password
+      });
+  
+      if (response.data) {
+        const { token, email, userId, userName } = response.data;
+  
+        onLogin({
+          token,
+          email,
+          userId,
+          userName
+        });
+  
+        navigate('/'); // ili gde god želiš
+      }
+  
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Pogrešan email ili lozinka');
+    }
+  };
+  
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleLoginClick = async () => {
     setEmailError(false);
@@ -31,26 +66,35 @@ function Login({ onLogin }) {
         password,
       });
 
-      console.log('Server response:', response.data);
+      const { token, user } = response.data;
 
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token); // Save token
-        onLogin(email, response.data.userName); // Call the onLogin callback with the email and userName
-        navigate('/userpanel'); // Navigate to user panel
+      if (user) {
+        // Spremi podatke u localStorage
+        localStorage.setItem('token', token);
+        localStorage.setItem('email', user.email);  // Spremi email u localStorage
+        localStorage.setItem('userId', user._id);
+
+        // Poziv na onLogin, ako trebaš da ažuriraš stanje u roditeljskoj komponenti
+        if (onLogin) {
+          onLogin({
+            token,
+            email: user.email,
+            userId: user._id,
+            userName: user.userName, // ili kako god ti backend vraća
+          });
+        }
+          // Pozivanje callback funkcije za roditeljsku komponentu
+
+        // Navigacija na korisnički panel
+        navigate('/userpanel');
+      } else {
+        setGlobalError('Login failed. Please try again.');
       }
-
     } catch (error) {
       console.error('Error during login:', error);
-
-      if (error.response) {
-        console.log('Server error response:', error.response.data);
-        alert(error.response.data.message || 'Login failed. Invalid credentials.');
-      } else {
-        alert('Network error. Please try again.');
-      }
-    } finally {
-      setLoading(false);
+      setGlobalError('Login failed. Please try again.');
     }
+    setLoading(false);
   };
 
   return (
@@ -87,6 +131,7 @@ function Login({ onLogin }) {
           error={passwordError}
           helperText={passwordError && (password.length < 8 ? 'Password must be at least 8 characters' : '')}
         />
+        {globalError && <div className="error-message">{globalError}</div>}
         <Link href="/signup" className="link">
           Register if you don't have an account?
         </Link>

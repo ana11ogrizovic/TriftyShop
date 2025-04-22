@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const jwtDecode = require('jwt-decode'); // Dodaj jwt-decode
 const Product = require('../models/Product');
 
 // 🔸 Storage za slike
@@ -17,7 +18,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 🔸 Dodavanje proizvoda sa slikama
-// 🔸 Dodavanje proizvoda sa slikama
 router.post('/add', upload.array('images', 8), async (req, res) => {
   try {
     const {
@@ -25,12 +25,9 @@ router.post('/add', upload.array('images', 8), async (req, res) => {
       deliveryMethod, group, subgroup, advertiserName, contactInfo
     } = req.body;
 
-    // Formatiraj group i subgroup
-    const formattedGroup = group.toLowerCase().replace(/ & /g, 'and').replace(/ /g, '-');
-    const formattedSubgroup = subgroup.toLowerCase().replace(/ /g, '-');
-
-
-
+    // Provera da li su 'group' i 'subgroup' definisani
+    const formattedGroup = group ? group.toLowerCase().replace(/ & /g, 'and').replace(/ /g, '-') : '';
+    const formattedSubgroup = subgroup ? subgroup.toLowerCase().replace(/ /g, '-') : '';
 
     // Dobavljanje putanja slika
     const imagePaths = req.files.map(file => file.path.replace(/\\/g, '/'));
@@ -58,7 +55,6 @@ router.post('/add', upload.array('images', 8), async (req, res) => {
   }
 });
 
-
 // 🔸 Dohvatanje svih proizvoda
 router.get('/', async (req, res) => {
   try {
@@ -69,7 +65,5 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch products' });
   }
 });
-
-
 
 module.exports = router;

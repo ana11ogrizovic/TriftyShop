@@ -1,51 +1,19 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  images: [String],  // Ovo bi trebalo da bude niz stringova
-  itemName: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  priceOption: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String
-  },
-  condition: {
-    type: String,
-    enum: ['new', 'used'],
-    default: 'new'
-  },
-  deliveryMethod: {
-    type: String,
-    enum: ['pickup', 'delivery'],
-    default: 'pickup'
-  },
-  category: {
-    type: String,
-    required: true
-  },
-  group: {
-    type: String,
-    required: true
-  },
-  subgroup: {
-    type: String
-  },
-  advertiserName: {
-    type: String,
-    required: true
-  },
-  contactInfo: {
-    type: String,
-    required: true
-  }
+  itemName: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true },
+  category: { type: String, required: true },
+  images: [String],
+  priceOption: { type: String, required: true },
+  condition: { type: String, required: true },
+  deliveryMethod: { type: String, required: true },
+  group: { type: String, required: true },
+  subgroup: { type: String, required: true },
+  advertiserName: { type: String, required: true },
+  contactInfo: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: '605c72ef153207001f6e39e9' }
 });
 
 const Product = mongoose.model('Product', productSchema);

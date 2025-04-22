@@ -143,15 +143,6 @@ const Header = ({ isLoggedIn, userEmail, onLogout }) => {
                 </Menu>
   </>
 )}
-
-          {!isUserPanelPage && !isAddListingPage && ( // Proverava da li nismo na stranici addlisting
-            <TextField
-              label="Search"
-              variant="outlined"
-              size="small"
-              style={{ marginRight: '0', width: '250px', marginLeft: '2%' }}
-            />
-          )}
         </div>
       </Toolbar>
     </header>

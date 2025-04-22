@@ -21,6 +21,8 @@ import PetsProducts from './pages/women/PetsProducts';
 import Forum from './pages/forum/Forum';
 import ContactUs from './pages/contact/ContactUs ';
 import Services from './pages/services/Services';
+import MessagesPage from './pages/messagesPage/MessagesPage'; // Correct path if needed
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,19 +32,31 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogin = (email, name) => {
+  const handleLogin = ({ token, email, userId, userName }) => {
+    localStorage.setItem('token', token || '');
+    localStorage.setItem('userId', userId || '');
+    localStorage.setItem('email', email || '');
+    localStorage.setItem('userName', userName || '');
+  
     setIsLoggedIn(true);
     setUserEmail(email);
-    setUserName(name);
+    setUserName(userName);
   };
-
+  
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userName');
+  
     setIsLoggedIn(false);
     setUserEmail('');
     setUserName('');
-    navigate('/login');
+  
+    navigate('/login'); // 👈 Dodato preusmeravanje
   };
-
+  
+  
   const shouldDisplayNavMenu = location.pathname !== '/userpanel' && location.pathname !== '/addlisting';
 
   return (
@@ -71,6 +85,8 @@ function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/messages/:productId" component={MessagesPage} /> {/* Ruta za poruke */}
+        <Route path="/messages" element={<MessagesPage />} />
         {/* Dodaj ostale podstranice ovde */}
       </Routes>
       <Footer />
