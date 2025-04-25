@@ -83,23 +83,7 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
-              </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
+                View & Contact
               </button>
             </div>
 
@@ -156,23 +140,7 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
-              </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
+                View & Contact
               </button>
             </div>
           </div>
@@ -227,24 +195,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
 
@@ -298,24 +252,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
 
@@ -369,24 +309,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
 
@@ -439,24 +365,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
         </div>
@@ -515,24 +427,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
 
@@ -586,24 +484,10 @@ const Home = () => {
                 onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
                 onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
               >
-                View
+                View & Contact
+
               </button>
-              <button style={{
-                backgroundColor: '#3F3038',
-                color: 'white',
-                border: 'none',
-                padding: '0.6rem 1rem',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                fontSize: '0.9rem',
-                transition: 'background-color 0.3s'
-              }}
-                onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-                onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-              >
-                Contact Seller
-              </button>
+
             </div>
           </div>
 
@@ -618,67 +502,53 @@ const Home = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             transition: 'transform 0.3s'
           }}
-  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
->
-  <img src={Image9} alt="Proizvod 3" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <img src={Image9} alt="Proizvod 3" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
 
-  <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Classic Fit Shirt</h3>
+            <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Classic Fit Shirt</h3>
 
-  <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
-    Timeless design with premium materials for all-day comfort.
-  </p>
+            <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
+              Timeless design with premium materials for all-day comfort.
+            </p>
 
-  <div style={{
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: '1rem',
-    fontSize: '1rem'
-  }}>
-    <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>24.99 $</span>
-    <span style={{ color: '#888', textDecoration: 'line-through' }}>29.99 $</span>
-  </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              width: '100%',
+              marginBottom: '1rem',
+              fontSize: '1rem'
+            }}>
+              <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>24.99 $</span>
+              <span style={{ color: '#888', textDecoration: 'line-through' }}>29.99 $</span>
+            </div>
 
-  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-    <button style={{
-      backgroundColor: '#F361AF',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
-    >
-      View
-    </button>
-    <button style={{
-      backgroundColor: '#3F3038',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-    >
-      Contact Seller
-    </button>
-  </div>
-</div>
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+              <button style={{
+                backgroundColor: '#F361AF',
+                color: 'white',
+                border: 'none',
+                padding: '0.6rem 1rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                transition: 'background-color 0.3s'
+              }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
+              >
+                View & Contact
+
+              </button>
+
+            </div>
+          </div>
 
 
-<div style={{
+          <div style={{
             border: '1px solid #ddd',
             padding: '1rem',
             width: '15rem',
@@ -689,65 +559,51 @@ const Home = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             transition: 'transform 0.3s'
           }}
-  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
->
-  <img src={Image10} alt="Proizvod 4" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <img src={Image10} alt="Proizvod 4" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
 
-  <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Vintage Denim Jacket</h3>
+            <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Vintage Denim Jacket</h3>
 
-  <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
-    A classic staple perfect for layering and effortless style.
-  </p>
+            <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
+              A classic staple perfect for layering and effortless style.
+            </p>
 
-  <div style={{
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: '1rem',
-    fontSize: '1rem'
-  }}>
-    <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>49.99 $</span>
-    <span style={{ color: '#888', textDecoration: 'line-through' }}>59.99 $</span>
-  </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              width: '100%',
+              marginBottom: '1rem',
+              fontSize: '1rem'
+            }}>
+              <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>49.99 $</span>
+              <span style={{ color: '#888', textDecoration: 'line-through' }}>59.99 $</span>
+            </div>
 
-  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-    <button style={{
-      backgroundColor: '#F361AF',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
-    >
-      View
-    </button>
-    <button style={{
-      backgroundColor: '#3F3038',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-    >
-      Contact Seller
-    </button>
-  </div>
-</div>
-<div style={{
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+              <button style={{
+                backgroundColor: '#F361AF',
+                color: 'white',
+                border: 'none',
+                padding: '0.6rem 1rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                transition: 'background-color 0.3s'
+              }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
+              >
+                View & Contact
+
+              </button>
+
+            </div>
+          </div>
+          <div style={{
             border: '1px solid #ddd',
             padding: '1rem',
             width: '15rem',
@@ -758,67 +614,53 @@ const Home = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             transition: 'transform 0.3s'
           }}
-  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
->
-  <img src={Image11} alt="Proizvod 5" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <img src={Image11} alt="Proizvod 5" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
 
-  <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Classic Leather Bag</h3>
+            <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Classic Leather Bag</h3>
 
-  <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
-    Sleek design with premium craftsmanship for everyday use.
-  </p>
+            <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
+              Sleek design with premium craftsmanship for everyday use.
+            </p>
 
-  <div style={{
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: '1rem',
-    fontSize: '1rem'
-  }}>
-    <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>14.99 $</span>
-    <span style={{ color: '#888', textDecoration: 'line-through' }}>19.99 $</span>
-  </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              width: '100%',
+              marginBottom: '1rem',
+              fontSize: '1rem'
+            }}>
+              <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>14.99 $</span>
+              <span style={{ color: '#888', textDecoration: 'line-through' }}>19.99 $</span>
+            </div>
 
-  
-  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-    <button style={{
-      backgroundColor: '#F361AF',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
-    >
-      View
-    </button>
-    <button style={{
-      backgroundColor: '#3F3038',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-    >
-      Contact Seller
-    </button>
-  </div>
-</div>
 
-<div style={{
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+              <button style={{
+                backgroundColor: '#F361AF',
+                color: 'white',
+                border: 'none',
+                padding: '0.6rem 1rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                transition: 'background-color 0.3s'
+              }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
+              >
+                View & Contact
+
+              </button>
+
+            </div>
+          </div>
+
+          <div style={{
             border: '1px solid #ddd',
             padding: '1rem',
             width: '15rem',
@@ -829,64 +671,50 @@ const Home = () => {
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
             transition: 'transform 0.3s'
           }}
-  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
->
-  <img src={Image12} alt="Proizvod 6" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <img src={Image12} alt="Proizvod 6" style={{ width: '100%', height: '21rem', borderRadius: '8px', marginBottom: '1rem' }} />
 
-  <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Summer Breeze Scarf</h3>
+            <h3 style={{ fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem' }}>Summer Breeze Scarf</h3>
 
-  <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
-    Lightweight and stylish, perfect for warm sunny days.
-  </p>
+            <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem', textAlign: 'center' }}>
+              Lightweight and stylish, perfect for warm sunny days.
+            </p>
 
-  <div style={{
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: '1rem',
-    fontSize: '1rem'
-  }}>
-    <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>14.99 $</span>
-    <span style={{ color: '#888', textDecoration: 'line-through' }}>19.99 $</span>
-  </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              width: '100%',
+              marginBottom: '1rem',
+              fontSize: '1rem'
+            }}>
+              <span style={{ color: '#F361AF', fontWeight: 'bold', fontSize: '1.2rem' }}>14.99 $</span>
+              <span style={{ color: '#888', textDecoration: 'line-through' }}>19.99 $</span>
+            </div>
 
-  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-    <button style={{
-      backgroundColor: '#F361AF',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
-    >
-      View
-    </button>
-    <button style={{
-      backgroundColor: '#3F3038',
-      color: 'white',
-      border: 'none',
-      padding: '0.6rem 1rem',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      transition: 'background-color 0.3s'
-    }}
-      onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-      onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-    >
-      Contact Seller
-    </button>
-  </div>
-</div>
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+              <button style={{
+                backgroundColor: '#F361AF',
+                color: 'white',
+                border: 'none',
+                padding: '0.6rem 1rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                transition: 'background-color 0.3s'
+              }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#E04B99'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
+              >
+                View & Contact
+
+              </button>
+
+            </div>
+          </div>
 
 
         </div>
@@ -927,13 +755,13 @@ const Home = () => {
 
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', padding: '0rem 20rem', backgroundColor: '#FDF6FA', paddingBottom: '3rem' }}>
-        {/* MENS SECTION */}
+        {/* WOMENS SECTION */}
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', height: '50rem' }}>
-          <img src={Image19} alt="Mens" style={{ width: '100%',borderRadius:'8px', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
+          <img src={Image20} alt="Womens" style={{ width: '100%', borderRadius: '8px', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>MENS</h2>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>WOMENS</h2>
             <button
-              onClick={() => window.location.href = '/mens'}
+              onClick={() => window.location.href = '/women'}
               style={{
                 padding: '0.8rem 2rem',
                 backgroundColor: '#F361AF',
@@ -953,14 +781,12 @@ const Home = () => {
             </button>
           </div>
         </div>
-
-        {/* WOMENS SECTION */}
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', height: '50rem' }}>
-          <img src={Image20} alt="Womens" style={{ width: '100%', borderRadius:'8px' ,height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
+          <img src={Image19} alt="Mens" style={{ width: '100%', borderRadius: '8px', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(70%)' }} />
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: 'white' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>WOMENS</h2>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>HEELS</h2>
             <button
-              onClick={() => window.location.href = '/womens'}
+              onClick={() => window.location.href = '/women/shoes/heels'}
               style={{
                 padding: '0.8rem 2rem',
                 backgroundColor: '#F361AF',
