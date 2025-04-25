@@ -11,12 +11,11 @@ const fs = require('fs');
 const User = require('./models/User');
 const Product = require('./models/Product');
 const adRoutes = require('./routes/adRoutes');  // Rut/ Ruta za poruke
-const Message = require('./models/Message');
 const router = express.Router();
 const authRoutes = require('./routes/auth'); // Importuj rute za autentifikaciju
 const verifyToken = require('./middleware/authMiddleware');
 // server.js
-const messageRoutes = require('./routes/messages');
+const productsRouter = require('./routes/products');
 
 
 dotenv.config();
@@ -33,9 +32,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/ads', adRoutes);
 app.use(express.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/messages', messageRoutes);
-
-
+app.use('/api/products', productsRouter);
 
 
 // 🔹 Povezivanje sa MongoDB
@@ -43,6 +40,33 @@ mongoose
   .connect(process.env.MONGO_URI, { dbName: 'triftyShop', useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch((err) => console.error('❌ Database connection error:', err));
+
+
+  router.get('/:productId', async (req, res) => {
+    try {
+      const product = await Product.findById(req.params.productId);
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+  
+      const seller = await User.findById(product.userId); // Pretpostavljamo da je userId u proizvodu
+      if (!seller) {
+        return res.status(404).json({ message: 'Seller not found' });
+      }
+  
+      res.json({
+        ...product.toObject(),
+        seller: {
+          name: seller.fullName,
+          email: seller.email,
+          phone: seller.phone
+        }
+      });
+    } catch (error) {
+      console.error(error); // Dodaj logovanje greške za lakše debagovanje
+      res.status(500).json({ message: 'Error fetching product or seller data' });
+    }
+  });
 
 
 // Additional route that was causing the error
@@ -136,12 +160,6 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 
-
-
-
-
-// 🔹 Rutine za oglase i poruke
-
 // Ruta za filtriranje proizvoda prema kategoriji
 app.get('/api/ads/:category/:group', async (req, res) => {
   const { category, group } = req.params;
@@ -163,44 +181,6 @@ app.get('/api/ads/women', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Ostale rute...
-
-
-
-
-
-app.get('/api/messages/:userId', async (req, res) => {
-  try {
-    const userId = req.params.userId;
-    const messages = await Message.find({ userId }).populate('productId'); // Popunjava productId sa podacima o proizvodu
-
-    res.json(messages);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error fetching messages');
-  }
-});
-
-app.post('/api/messages/sendMessage', async (req, res) => {
-  try {
-    const { senderId, receiverId, productId, content } = req.body;
-
-    // Ovdje možete proveriti da li su podaci ispravni
-    if (!senderId || !receiverId || !content) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    }
-
-    // Logika za slanje poruke u bazu podataka
-    const newMessage = new Message({ senderId, receiverId, productId, content });
-    await newMessage.save();
-
-    return res.status(200).json({ message: 'Message sent successfully' });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Error sending message' });
   }
 });
 
@@ -245,6 +225,27 @@ app.delete('/api/products/:productId', async (req, res) => {
   } catch (error) {
     console.error("Greška pri brisanju proizvoda:", error);
     res.status(500).send("Došlo je do greške pri brisanju proizvoda.");
+  }
+});
+app.get('/api/products/:productId', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId).populate('userId', 'fullName email phone');
+    
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json({
+      ...product.toObject(),
+      seller: {
+        name: product.userId.fullName,
+        email: product.userId.email,
+        phone: product.userId.phone, // Prikazujemo telefon
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching product or seller data:', error);
+    res.status(500).json({ message: 'Error fetching product or seller data' });
   }
 });
 

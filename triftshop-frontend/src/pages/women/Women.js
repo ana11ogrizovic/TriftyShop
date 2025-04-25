@@ -55,24 +55,7 @@ const ProductCard = ({ product, onView, onContactSeller }) => (
         onMouseOut={(e) => e.target.style.backgroundColor = '#F361AF'}
         onClick={() => onView(product)}
       >
-        View
-      </button>
-      <button style={{
-        backgroundColor: '#3F3038',
-        color: 'white',
-        border: 'none',
-        padding: '0.6rem 1rem',
-        borderRadius: '6px',
-        cursor: 'pointer',
-        fontWeight: 'bold',
-        fontSize: '0.9rem',
-        transition: 'background-color 0.3s'
-      }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#281F25'}
-        onMouseOut={(e) => e.target.style.backgroundColor = '#3F3038'}
-        onClick={() => onContactSeller(product)}
-      >
-        Contact Seller
+        View & Contact
       </button>
     </div>
   </div>
@@ -87,13 +70,13 @@ const WomenProduct = () => {
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [sortOrder, setSortOrder] = useState('');
   const [condition, setCondition] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState(null); // Track selected product for modal
   const BASE_URL = "http://localhost:5000/";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [isSending, setIsSending] = useState(false);
   const [originalProducts, setOriginalProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
 
 
 
@@ -102,22 +85,22 @@ const WomenProduct = () => {
     const senderId = localStorage.getItem('userId');
     const receiverId = selectedProduct?.userId;
     const token = localStorage.getItem('token');
-  
+
     console.log('🔑 Token from localStorage:', token); // 🛠 Debugging tokena
-  
+
     if (!message.trim()) return alert('Please enter a message.');
     if (!senderId || !receiverId) return alert('Sender or receiver not found.');
     if (!token) return alert('You must be logged in.');
-  
+
     try {
       console.log('📩 Sending message with:', { senderId, receiverId, productId: selectedProduct._id, content: message });
-  
+
       const response = await axios.post(
         'http://localhost:5000/api/messages/sendMessage',
         { senderId, receiverId, productId: selectedProduct._id, content: message },
         { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
       );
-  
+
       console.log('✅ Message sent successfully:', response.data);
       setIsMessageModalOpen(false);
       setMessage('');
@@ -127,13 +110,14 @@ const WomenProduct = () => {
       alert('Something went wrong. Try again.');
     }
   };
-  
+
 
 
 
 
 
   const handleViewProduct = (product) => {
+    console.log('Selected product:', product); // Debug the product data
     setIsMessageModalOpen(false); // Zatvori modal za Contact Seller
     setSelectedProduct(product);  // Postavi selektovani proizvod
     setIsModalOpen(true);         // Otvori modal za proizvod
@@ -346,8 +330,6 @@ const WomenProduct = () => {
           )}
         </div>
       </main>
-
-      {/* Modal Section for Product View */}
       {isModalOpen && selectedProduct && (
         <div style={{ ...styles.modalOverlay, animation: 'fadeIn 0.3s' }} onClick={closeModal}>
           <div style={{ ...styles.modalUrbanContainer }} onClick={(e) => e.stopPropagation()}>
@@ -382,60 +364,18 @@ const WomenProduct = () => {
                   <span style={styles.priceType}>{selectedProduct.priceOption || 'Fixed'}</span>
                 </div>
 
+                {/* Seller Info */}
                 <div style={styles.sellerInfoBox}>
                   <p><strong>Seller:</strong> {selectedProduct.advertiserName}</p>
                   <p><strong>Contact:</strong> {selectedProduct.contactInfo}</p>
                   <p><strong>Delivery:</strong> {selectedProduct.deliveryMethod}</p>
+                  <p><strong>Phone:</strong> {selectedProduct.phone}</p>
                 </div>
               </div>
             </div>
 
             <button style={styles.closeButton} onClick={closeModal}>✕</button>
           </div>
-        </div>
-      )}
-
-      {/* Modal Section for Message */}
-      {isMessageModalOpen && selectedProduct && (
-        <div style={styles.modalOverlay} onClick={() => setIsMessageModalOpen(false)}>
-          <div style={styles.modalMessageBox} onClick={(e) => e.stopPropagation()}>
-            <h2 style={{ color: '#F361AF' }}>Contact Seller</h2>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Enter your message..."
-              rows={5}
-              style={{
-                width: '90%',
-                padding: '1rem',
-                borderRadius: '6px',
-                border: '1px solid #ccc',
-                resize: 'none',
-                marginBottom: '1rem'
-              }}
-            />
-            <div style={{ textAlign: 'right' }}>
-              <button
-                onClick={handleSendMessage}
-                disabled={isSending}
-                style={{
-                  backgroundColor: '#F361AF',
-                  color: 'white',
-                  border: 'none',
-                  padding: '0.6rem 1.2rem',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                {isSending ? 'Sending...' : 'Send'}
-              </button>
-
-            </div>
-            <button style={styles.closeButton} onClick={closeModal}>✕</button>
-          </div>
-
         </div>
       )}
     </div>

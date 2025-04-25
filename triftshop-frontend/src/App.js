@@ -17,7 +17,6 @@ import CategoryProductsPage from './components/ProductsBySubgroupPage/ProductsBy
 import Forum from './pages/forum/Forum';
 import ContactUs from './pages/contact/ContactUs ';
 import Services from './pages/services/Services';
-import MessagesPage from './pages/messagesPage/MessagesPage'; // Correct path if needed
 import MyListings from './pages/mylistings/MyListings';
 
 
@@ -78,8 +77,6 @@ function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/messages/:productId" component={MessagesPage} /> {/* Ruta za poruke */}
-        <Route path="/messages" element={<MessagesPage />} />
         <Route path="/listings" element={<MyListings />} />
         {/* Dodaj ostale podstranice ovde */}
       </Routes>
