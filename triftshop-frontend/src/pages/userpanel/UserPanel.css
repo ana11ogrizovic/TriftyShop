@@ -1,58 +1,125 @@
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.product-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-details h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  font-size: 1rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
   .product-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-  }
-  
-  .product-item img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
-  
-  .product-details h4 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .product-details p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  @media (max-width: 768px) {
-    .product-item {
-      width: 100%;
-      margin: 10px 0;
-    }
-  }
-  
-  .delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-button:hover {
-    background-color: #d32f2f;
-  }
-  
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.activity-overview {
+  padding: 30px;
+  background-color: #fdf6fa;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 2rem 0;  /* Povećaj gornji i donji razmak */
+  text-align: center;
+  margin-left: 10%;  /* Premesti ka levoj ivici */
+}
+
+.activity-overview h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #3F3038;
+  margin-bottom: 20px;
+}
+
+.activity-overview .overview-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.activity-overview .listing-box p {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.activity-overview .listing-box h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-top: 10px;
+  color: #3F3038;  /* Tamno roze boja za broj */
+}
+
+.activity-overview .listing-description {
+  font-size: 16px;
+  color: #3F3038;  /* Tamno roze boja za tekst */
+  margin-top: 15px;
+}
+
+.activity-overview .action-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.activity-overview .action-buttons .btn-manage,
+.activity-overview .action-buttons .btn-add {
+  background-color: #F361AF;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.activity-overview .action-buttons .btn-manage:hover,
+.activity-overview .action-buttons .btn-add:hover {
+  background-color: #242323; /* Dodaj boju za hover efekat */
+}

@@ -5,7 +5,7 @@ const Product = require('../models/Product'); // ili gde god ti je model proizvo
 const User = require('../models/User'); // Takođe, importuj model za korisnika
 
 // Ruta za proizvod sa podacima o prodavcu
-app.get('/api/products/:productId', async (req, res) => {
+router.get('/api/products/:productId', async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId).populate('userId', 'fullName email phone');
     

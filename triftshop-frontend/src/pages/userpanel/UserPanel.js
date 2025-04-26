@@ -4,57 +4,49 @@ import NavMenu from "../../components/navMenu/NavMenu";
 import { jwtDecode } from "jwt-decode"; // Popravljen uvoz
 import axios from "axios";
 import './UserPanel.css';
+import { Link } from 'react-router-dom';
+
 
 
 export default function UserPanel() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [isChatOpen, setIsChatOpen] = useState(false); // Stanje za otvaranje chat-a
-  const [selectedProductId, setSelectedProductId] = useState(null);
   const [userProducts, setUserProducts] = useState([]);
+  const [activityData, setActivityData] = useState({
+    lastLogin: '', // Ovaj podatak bi trebalo da dođe iz tvoje baze podataka ili iz tokena
+    totalListings: 0, // Broj proizvoda (treba da se postavi iz proizvoda korisnika)
+    favoriteProducts: 0, // Možeš dobiti ovaj podatak iz nekog drugog API-ja
+    awaitingApproval: 0 // Ako postoji, možeš takođe postaviti ovaj broj iz API-ja
+  });
   const [activePanel, setActivePanel] = useState("Messages"); // ili bilo koja početna vrednost
+
 
 
   const handlePanelSwitch = (panelName) => {
     setActivePanel(panelName);
   };
 
-  // Funkcija za odjavu
-  const handleLogout = () => {
-    // Brisanje tokena iz localStorage
-    localStorage.removeItem('token');
-
-    // Preusmeravanje na početnu stranicu (home page)
-    navigate('/');
-  };
-
   useEffect(() => {
     fetchUserProducts();
   }, []);
 
+  // API poziv za proizvode korisnika
   const fetchUserProducts = async () => {
     try {
-      // Povuci token iz localStorage
       const token = localStorage.getItem("token");
       if (!token) {
         console.error("🚨 Token nije pronađen u localStorage");
         return;
       }
 
-      // Dekodiraj token
       const decodedToken = jwtDecode(token);
-      console.log("✅ Decoded token:", decodedToken);
+      const userEmail = decodedToken.email || localStorage.getItem("email");
 
-      // Proveri da li postoji `email` ili `userId` u tokenu
-      const userEmail = decodedToken.email || localStorage.getItem("email"); // ✅ Osiguraj da koristimo email iz tokena
       if (!userEmail) {
         console.error("🚨 Email nije pronađen u tokenu ili localStorage");
         return;
       }
 
-      console.log("🔍 Fetching products for email:", userEmail);
-
-      // Pozovi API da povuče proizvode korisnika
       const response = await axios.get(`http://localhost:5000/api/products/user/${userEmail}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -64,12 +56,55 @@ export default function UserPanel() {
       } else {
         setUserProducts(response.data);
         console.log("✅ Proizvodi korisnika:", response.data);
+
+        // Ažuriraj activityData sa brojem proizvoda
+        setActivityData(prevState => ({
+          ...prevState,
+          totalListings: response.data.length // Broj proizvoda postavljamo ovde
+        }));
       }
     } catch (error) {
       console.error("❌ Greška pri dohvatanju proizvoda:", error);
     }
   };
 
+  // API poziv za podatke o aktivnosti korisnika (npr. poslednja prijava)
+  const fetchActivityData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("🚨 Token nije pronađen u localStorage");
+        return;
+      }
+
+      const decodedToken = jwtDecode(token);
+      const userEmail = decodedToken.email || localStorage.getItem("email");
+
+      if (!userEmail) {
+        console.error("🚨 Email nije pronađen u tokenu ili localStorage");
+        return;
+      }
+
+      const response = await axios.get(`http://localhost:5000/api/activity/${userEmail}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.data) {
+        setActivityData(prevState => ({
+          ...prevState,
+          lastLogin: response.data.lastLogin, // Postavi poslednju prijavu ako postoji
+          favoriteProducts: response.data.favoriteProducts, // Ovaj podatak možeš koristiti ako ga imaš u bazi
+          awaitingApproval: response.data.awaitingApproval // Ako imaš, postavi broj proizvoda koji čeka odobrenje
+        }));
+      }
+    } catch (error) {
+      console.error("❌ Greška pri dohvatanju podataka o aktivnosti:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchActivityData(); // Pozivamo funkciju za aktivnosti korisnika prilikom učitavanja komponente
+  }, []);
 
 
   const deleteProduct = async (productId) => {
@@ -119,14 +154,22 @@ export default function UserPanel() {
               >
                 <i className="fa fa-list-alt" style={{ marginRight: '10px' }}></i> My Listings
               </li>
-              <li><i className="fa fa-book" style={{ marginRight: '10px' }}></i> Messages</li>
+              <li>
+                <Link to="/addlisting" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <i className="fa fa-book" style={{ marginRight: '10px' }}></i>
+                  Add Listings
+                </Link>
+              </li>
+
               <hr />
-              <li><i className="fa fa-book" style={{ marginRight: '10px' }}></i> Address Book</li>
+              <li onClick={() => setActivePanel("activityOverview")} style={{ cursor: "pointer", color: activePanel === "activityOverview" ? "#F361AF" : "#3F3038" }}>
+                <i className="fa fa-chart-line" style={{ marginRight: '10px' }}></i> Activity Overview
+              </li>
+
               <li><i className="fa fa-cube" style={{ marginRight: '10px' }}></i> Shipments</li>
               <li><i className="fa fa-truck" style={{ marginRight: '10px' }}></i> Schedule a Courier</li>
               <hr />
-              <li><i className="fa fa-user" style={{ marginRight: '10px' }}></i> My Profile</li>
-              <li style={{ color: "#F361AF", cursor: "pointer" }} onClick={handleLogout}><i className="fa fa-sign-out" style={{ marginRight: '10px' }}></i> Log Out</li>
+              <li style={{ color: "#F361AF", cursor: "pointer" }}><i className="fa fa-user" style={{ marginRight: '10px' }}></i> My Profile</li>
             </ul>
           </aside>
 
@@ -161,6 +204,30 @@ export default function UserPanel() {
                   </div>
                 )}
 
+              </div>
+            )}
+
+            {activePanel === "activityOverview" && (
+              <div className="activity-overview">
+                <h3>Activity Overview</h3>
+                <hr></hr>
+                <div className="overview-content">
+                  <div className="listing-box">
+                    <p><strong>Your current total listings:</strong></p>
+                    <h2>{activityData.totalListings}</h2>
+                    <p className="listing-description">
+                      That's the number of items you currently have available for sale on your profile.
+                    </p>
+                    <div className="action-buttons">
+                      <button onClick={() => setActivePanel("listings")} className="btn-manage">
+                        Manage Listings
+                      </button>
+                      <button onClick={() => navigate("/addlisting")} className="btn-add">
+                        Add Listing
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 

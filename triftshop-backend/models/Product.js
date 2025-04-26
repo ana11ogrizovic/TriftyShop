@@ -22,14 +22,16 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model('Product', productSchema);
 
 // Upit sa populacijom
-Product.find()
-  .populate('userId', 'fullName email phone') // Populacija koja uključuje podatke o korisniku (name, email, phone)
-  .exec((err, products) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(products);
-    }
-  });
+const getProduct = async () => {
+  try {
+    const product = await Product.findOne()
+      .populate('userId', 'fullName email phone');
+    console.log(product);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+getProduct();
 
 module.exports = Product;
