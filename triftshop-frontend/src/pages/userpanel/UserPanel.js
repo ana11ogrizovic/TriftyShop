@@ -12,13 +12,14 @@ export default function UserPanel() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [userProducts, setUserProducts] = useState([]);
+  const [activePanel, setActivePanel] = useState("listings"); // Postavlja "My Listings" kao aktivni panel po defaultu
+
   const [activityData, setActivityData] = useState({
     lastLogin: '', // Ovaj podatak bi trebalo da dođe iz tvoje baze podataka ili iz tokena
     totalListings: 0, // Broj proizvoda (treba da se postavi iz proizvoda korisnika)
     favoriteProducts: 0, // Možeš dobiti ovaj podatak iz nekog drugog API-ja
     awaitingApproval: 0 // Ako postoji, možeš takođe postaviti ovaj broj iz API-ja
   });
-  const [activePanel, setActivePanel] = useState("Messages"); // ili bilo koja početna vrednost
 
 
 
@@ -30,6 +31,7 @@ export default function UserPanel() {
     fetchUserProducts();
   }, []);
 
+  
   // API poziv za proizvode korisnika
   const fetchUserProducts = async () => {
     try {
@@ -133,45 +135,49 @@ export default function UserPanel() {
         <div style={{ width: "70%", backgroundColor: "rgba(255, 255, 255, 0.03)", padding: "2rem", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
 
           {/* Sidebar */}
+          {/* Sidebar */}
           <aside style={{ width: "20%", float: "left", padding: "1rem", borderRight: "1px solid #E5E3E4", minHeight: "70vh" }}>
             <h2 style={{ fontWeight: "400", fontSize: "1.5rem", color: "#3F3038", marginBottom: "0.5rem" }}>
               My TriftyShop
             </h2>
             <hr />
 
-            {/* Prikaz email-a ispod "My Profile" */}
-            {user?.email && (
-              <p style={{ color: "#F361AF", fontSize: "1.2rem", marginBottom: "1rem", padding: "5px 0px", borderRadius: "5px", fontWeight: "bold" }}>
-                {user.email}
-              </p>
-            )}
+            {/* Display User Info */}
+            <div style={{ marginBottom: "1rem" }}>
+              {user?.name && (
+                <p style={{ color: "#F361AF", fontSize: "1.2rem", fontWeight: "bold" }}>
+                  Welcome, {user.name}
+                </p>
+              )}
+              {user?.email && (
+                <p style={{ color: "#F361AF", fontSize: "1.2rem", marginBottom: "1rem" }}>
+                  {user.email}
+                </p>
+              )}
+            </div>
 
             <ul style={{ listStyleType: "none", padding: 0, fontSize: "1.1rem", color: "#3F3038", lineHeight: "2" }}>
-              <li
-
-                onClick={() => setActivePanel("listings")}
-                style={{ cursor: "pointer", color: activePanel === "listings" ? "#F361AF" : "#3F3038" }}
-              >
+              <li onClick={() => setActivePanel("listings")} style={{ cursor: "pointer", color: activePanel === "listings" ? "#F361AF" : "#3F3038" }}>
                 <i className="fa fa-list-alt" style={{ marginRight: '10px' }}></i> My Listings
               </li>
               <li>
                 <Link to="/addlisting" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <i className="fa fa-book" style={{ marginRight: '10px' }}></i>
-                  Add Listings
+                  <i className="fa fa-book" style={{ marginRight: '10px' }}></i> Add Listings
                 </Link>
               </li>
-
-              <hr />
               <li onClick={() => setActivePanel("activityOverview")} style={{ cursor: "pointer", color: activePanel === "activityOverview" ? "#F361AF" : "#3F3038" }}>
                 <i className="fa fa-chart-line" style={{ marginRight: '10px' }}></i> Activity Overview
               </li>
-
-              <li><i className="fa fa-cube" style={{ marginRight: '10px' }}></i> Shipments</li>
-              <li><i className="fa fa-truck" style={{ marginRight: '10px' }}></i> Schedule a Courier</li>
               <hr />
-              <li style={{ color: "#F361AF", cursor: "pointer" }}><i className="fa fa-user" style={{ marginRight: '10px' }}></i> My Profile</li>
+              <li>
+                <Link to="/editprofile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <i className="fa fa-user" style={{ marginRight: '10px' }}></i> Edit Profile
+
+                </Link>
+              </li>
             </ul>
           </aside>
+
 
           {/* Glavni deo */}
           <main style={{ width: "75%", padding: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -196,7 +202,7 @@ export default function UserPanel() {
                           <p><strong>{product.price} RSD</strong></p>
                           <p>{product.condition}</p>
                           <button className="delete-button" onClick={() => deleteProduct(product._id)}>
-                            Obrisi
+                            Delete
                           </button>
                         </div>
                       </div>

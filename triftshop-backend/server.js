@@ -16,7 +16,7 @@ const authRoutes = require('./routes/auth'); // Importuj rute za autentifikaciju
 const verifyToken = require('./middleware/authMiddleware');
 // server.js
 const productsRouter = require('./routes/products');
-
+const userRoutes = require('./routes/user'); // Importuj rute za korisnike
 
 dotenv.config();
 const app = express();
@@ -33,6 +33,7 @@ app.use('/api/ads', adRoutes);
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRouter);
+app.use("/api/user", userRoutes);
 
 
 // 🔹 Povezivanje sa MongoDB
@@ -249,6 +250,35 @@ app.get('/api/products/:productId', async (req, res) => {
   }
 });
 
+app.put('/api/user/update', async (req, res) => {
+  const { email, newEmail, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'Korisnik nije pronađen' });
+    }
+
+    // Ako je nov email unet, ažuriraj email
+    if (newEmail) {
+      user.email = newEmail;
+    }
+
+    // Ako je nova lozinka uneta, enkriptuje je i ažurira
+    if (newPassword) {
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      user.password = hashedPassword;
+    }
+
+    // Sačuvaj ažurirane podatke
+    await user.save();
+    res.status(200).json({ message: 'Profil je uspešno ažuriran' });
+  } catch (error) {
+    console.error('Greška pri ažuriranju korisničkog profila', error);
+    res.status(500).json({ message: 'Došlo je do greške' });
+  }
+});
 
 // 🔹 Pokretanje servera
 const PORT = process.env.PORT || 5000;

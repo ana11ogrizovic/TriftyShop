@@ -15,8 +15,9 @@ const productSchema = new mongoose.Schema({
   advertiserName: { type: String, required: true },
   contactInfo: { type: String, required: true }, // Email
   phone: { type: String, required: false },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: '605c72ef153207001f6e39e9' }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }  // povezivanje sa korisnikom
 });
+
 
 // Definisanje Product modela
 const Product = mongoose.model('Product', productSchema);

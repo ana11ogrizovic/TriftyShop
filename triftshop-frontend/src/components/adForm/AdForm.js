@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AdForm.css"; // CSS for styles
 import { useNavigate } from 'react-router-dom';
 
+
 const categories = [
   {
     name: 'Women',
@@ -139,7 +140,9 @@ const AdForm = () => {
     }
   };
 
-
+  const handleBack = () => {
+    navigate('/userpanel'); // Zameni '/userpanel' sa stvarnim URL-om tvoje stranice za UserPanel
+  };
 
   return (
     <div className="page-container" style={{ justifyContent: 'center' }}>
@@ -334,6 +337,11 @@ const AdForm = () => {
 
         </form>
       </div>
+
+      <button type="button" className="back-btn" onClick={handleBack}>
+              Back to UserPanel
+            </button>
+      
     </div>
   );
 };

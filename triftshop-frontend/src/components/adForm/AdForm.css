@@ -227,3 +227,21 @@ input, textarea, select {
 .submit-btn:hover {
     background-color: #1a5a91;
 }
+
+.back-btn {
+  background-color: #fdf6fa;
+  color: #333;
+  border: 3px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 1rem;
+  font-weight: bold;
+  box-shadow: #222425;
+  
+}
+
+.back-btn:hover {
+  background-color: #fa7aba;
+}
