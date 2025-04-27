@@ -56,3 +56,25 @@
     color: #555;
   }
   
+  .map-container {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .social-link {
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .social-link:hover {
+    color: #007bff;
+  }
+  

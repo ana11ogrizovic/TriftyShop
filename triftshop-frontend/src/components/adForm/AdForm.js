@@ -1,67 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./AdForm.css"; // CSS for styles
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   {
     name: 'Women',
     groups: [
-      { label: 'Clothing', options: ['T-shirt', 'Shorts', 'Jumpers', 'Suits', 'Skirts', 'Sweaters', 'Dresses', 'Skorts', 'Jumpsuits', 'Blouses', 'Cardigans', 'Tank Tops', 'Blazers', 'Pants', 'Leggings', 'Jackets', 'Coats'] },
-      { label: 'Shoes', options: ['Boots', 'Sandals', 'Heels', 'Sneakers', 'Flats', 'Loafers', 'Wedges', 'Slippers'] },
-      { label: 'Beauty & Care', options: ['Face Creams', 'Shampoo', 'Conditioners', 'Hair Masks', 'Body Lotion', 'Perfume', 'Makeup', 'Nail Care'] },
-      { label: 'Fashion Accessories', options: ['Jewelry', 'Sunglasses', 'Hats', 'Scarves', 'Belts', 'Watches', 'Hair Accessories', 'Gloves', 'Wallets', 'Headbands', 'Ties & Bow Ties'] },
-      { label: 'Bags', options: ['Handbags', 'Tote Bags', 'Clutch Bags', 'Backpacks', 'Crossbody Bags', 'Shoulder Bags', 'Duffel Bags', 'Sling Bags', 'Laptop Bags', 'Beach Bags', 'Messenger Bags'] },
+      { label: 'Clothing', options: ['T-shirt', 'Shorts', 'Jumpers', 'Suits', 'Skirts', 'Sweaters', 'Dresses'] },
+      { label: 'Shoes', options: ['Boots', 'Sandals', 'Heels', 'Sneakers', 'Flats'] },
+      { label: 'Beauty & Care', options: ['Face Creams', 'Perfume', 'Nail Care'] },
+      { label: 'Fashion Accessories', options: ['Jewelry', 'Sunglasses', 'Belts', 'Watches'] },
+      { label: 'Bags', options: ['Handbags', 'Backpacks', 'Shoulder Bags', 'Laptop Bags', 'Beach Bags'] },
     ],
-  },
-  {
-    name: 'Men',
-    groups: [
-      { label: 'Clothing', options: ['Suits', 'Jacket', 'T-shirts', 'Shirts', 'Jeans', 'Shorts', 'Sweaters', 'Blazers', 'Pants', 'Jumpers', 'Hoodies', 'Trousers', 'Vests', 'Coats', 'Chinos'] },
-      { label: 'Shoes', options: ['Boots', 'Sneakers', 'Flats', 'Slippers'] },
-      { label: 'Men Care', options: ['Shaving Cream', 'Aftershave', 'Face Wash', 'Shampoo', 'Conditioners', 'Hair Gel', 'Beard Oil', 'Perfume', 'Deodorants', 'Body Lotion', 'Face Creams'] },
-      { label: 'Watches', options: ['Analog Watches', 'Digital Watches', 'Smart Watches', 'Chronograph Watches', 'Luxury Watches', 'Diving Watches', 'Sports Watches', 'Fashion Watches', 'Leather Strap Watches', 'Metal Strap Watches', 'Wooden Watches', 'Pocket Watches'] },
-      { label: 'Bags', options: ['Leather Bags', 'Messenger Bags', 'Backpacks', 'Laptop Bags', 'Travel Bags'] },
-      { label: 'Men Accessories', options: ['Belts', 'Hats', 'Sunglasses', 'Wallets', 'Cufflinks', 'Necklaces', 'Bracelets'] },
-      { label: 'Ties & Bow Ties', options: ['Silk Ties', 'Linen Ties', 'Bow Ties', 'Pre-Tied Bow Ties', 'Pocket Squares', 'Tie Bars', 'Ascot Ties', 'Clip-On Ties', 'Knit Ties', 'Designer Ties', 'Slim Ties', 'Patterned Ties'] },
-    ],
-  },
-  {
-    name: 'Children',
-    groups: [
-      { label: 'Clothing', options: ['Dresses', 'Skirts', 'T-shirts', 'Jackets', 'Tops', 'Pants', 'Shorts', 'Sweaters', 'Overalls'] },
-      { label: 'Shoes', options: ['Sneakers', 'Boots', 'Sandals', 'Slippers', 'Dress Shoes', 'Rain Boots'] },
-      { label: 'Accessories', options: ['Hats', 'Gloves', 'Scarves', 'Bags', 'Headbands', 'Sunglasses', 'Belts', 'Watches'] },
-      { label: 'Toys', options: ['Educational Toys', 'Building Blocks', 'Action Figures', 'Dolls', 'Playsets', 'Stuffed Animals', 'Cars & Vehicles', 'Musical Toys'] },
-      { label: 'Sleepwear', options: ['Pajamas', 'Onesies', 'Sleep Shorts', 'Nightgowns', 'Robes'] },
-      { label: 'Baby Care', options: ['Diapers', 'Baby Lotion', 'Baby Wipes', 'Baby Bottles', 'Pacifiers', 'Swaddles', 'Cribs', 'Car Seats'] },
-      { label: 'Sportswear', options: ['Sports Shoes', 'T-shirts', 'Leggings', 'Tracksuits', 'Gym Bags', 'Hoodies'] },
-    ],
-  },
-  {
-    name: 'House',
-    groups: [
-      { label: 'Kitchenware', options: ['Plates', 'Mugs', 'Glassware', 'Cutlery', 'Cookware', 'Utensils'] },
-      { label: 'Furniture', options: ['Sofas', 'Chairs', 'Tables', 'Beds', 'Storage', 'Shelving Units'] },
-      { label: 'Lighting', options: ['Lamps', 'Ceiling Lights', 'LED Lights', 'Wall Sconces', 'Chandeliers'] },
-      { label: 'Storage & Organization', options: ['Bins & Baskets', 'Closets & Wardrobes', 'Shelves', 'Drawer Organizers', 'Hooks & Hangers'] },
-      { label: 'Gardening & Plants', options: ['Planters', 'Outdoor Furniture', 'Garden Tools', 'Artificial Plants', 'Indoor Plants', 'Pots'] },
-      { label: 'Cleaning Supplies', options: ['Cleaning Tools', 'Laundry Detergent', 'Mops & Brooms', 'Disinfectants', 'Vacuum Cleaners'] },
-      { label: 'Wall Art & Mirrors', options: ['Posters', 'Paintings', 'Framed Art', 'Mirrors', 'Wall Decals'] },
-    ],
-  },
-  {
-    name: 'Pets',
-    groups: [
-      { label: 'Pet Clothing', options: ['Dresses', 'Jackets', 'T-Shirts', 'Sweaters', 'Raincoats', 'Hoodies'] },
-      { label: 'Pet Toys', options: ['Chew Toys', 'Plush Toys', 'Balls', 'Interactive Toys', 'Catnip Toys'] },
-      { label: 'Pet Accessories', options: ['Collars', 'Leashes', 'Harnesses', 'Bowties', 'Bandanas', 'Pet Tags'] },
-      { label: 'Pet Beds & Furniture', options: ['Dog Beds', 'Cat Trees', 'Pet Mats', 'Pet Cushions', 'Pet Sofas'] },
-      { label: 'Pet Grooming', options: ['Brushes', 'Shampoos', 'Nail Clippers', 'Grooming Gloves', 'Pet Hair Dryers'] },
-      { label: 'Pet Food & Treats', options: ['Dog Food', 'Cat Food', 'Treats', 'Supplements'] },
-      { label: 'Pet Health', options: ['Flea & Tick Treatment', 'Vitamins', 'First Aid Kits', 'Supplements'] },
-      { label: 'Pet Travel', options: ['Carriers', 'Travel Beds', 'Travel Bowls', 'Pet Seat Covers'] },
-      { label: 'Pet Training', options: ['Training Collars', 'Training Pads', 'Pet Clickers', 'Training Treats'] },
-    ],
-  },
+  }
 ];
 
 
@@ -85,6 +36,8 @@ const AdForm = () => {
 
   const [selectedCategory, setSelectedCategory] = useState(""); // To track the selected category
   const [groups, setGroups] = useState([]); // Store groups based on selected category
+  const navigate = useNavigate();
+
 
   // Handle input changes for form fields
   const handleInputChange = (e) => {
@@ -121,7 +74,7 @@ const AdForm = () => {
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
-  
+
     setFormData((prevData) => {
       if (prevData.images.length >= 8) {
         alert("Maximum number of images reached (8).");
@@ -131,7 +84,6 @@ const AdForm = () => {
       return { ...prevData, images: newImages };
     });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -161,6 +113,7 @@ const AdForm = () => {
   
       if (response.ok) {
         alert("Ad posted successfully!");
+  
         setFormData({
           images: [],
           itemName: "",
@@ -175,6 +128,8 @@ const AdForm = () => {
           advertiserName: "",
           contactInfo: "",
         });
+  
+        navigate('/women'); // ➡️ Ovde vodiš korisnika na Women stranicu!
       } else {
         alert("Greška: " + result.message);
       }
@@ -183,7 +138,6 @@ const AdForm = () => {
       alert("Greška pri postavljanju oglasa.");
     }
   };
-  
 
 
 
@@ -203,32 +157,32 @@ const AdForm = () => {
         <form className="ad-form" onSubmit={handleSubmit}>
           {/* Section 1: Image Upload */}
           {/* Section 1: Image Upload */}
-{activeStep === 1 && (
-  <div className="form-section">
-    <h2 className="section-title">Add Images</h2>
-    <div className="form-group">
-      <div className="upload-container">
-        {formData.images.length > 0 && (
-          <div className="image-preview">
-            <img src={URL.createObjectURL(formData.images[0])} alt="Product" />
-          </div>
-        )}
-        <div className="upload-box" onClick={() => document.getElementById("file-input").click()}>
-          <span className="upload-icon">+</span>
-          <span className="upload-text">Upload Images</span>
-        </div>
-      </div>
-      <input
-        id="file-input"
-        type="file"
-        multiple
-        accept="image/*"
-        onChange={handleFileUpload}
-        style={{ display: "none" }}
-      />
-    </div>
-  </div>
-)}
+          {activeStep === 1 && (
+            <div className="form-section">
+              <h2 className="section-title">Add Images</h2>
+              <div className="form-group">
+                <div className="upload-container">
+                  {formData.images.length > 0 && (
+                    <div className="image-preview">
+                      <img src={URL.createObjectURL(formData.images[0])} alt="Product" />
+                    </div>
+                  )}
+                  <div className="upload-box" onClick={() => document.getElementById("file-input").click()}>
+                    <span className="upload-icon">+</span>
+                    <span className="upload-text">Upload Images</span>
+                  </div>
+                </div>
+                <input
+                  id="file-input"
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  style={{ display: "none" }}
+                />
+              </div>
+            </div>
+          )}
 
 
           {/* Section 2: Item Details */}
@@ -370,12 +324,14 @@ const AdForm = () => {
             </div>
           )}
 
-          {/* Submit Button */}
           {activeStep === 4 && (
             <div className="form-actions">
-              <button type="submit" className="submit-btn">Post Listing</button>
+              <button type="button" className="submit-btn" onClick={handleSubmit}>
+                Post Listing
+              </button>
             </div>
           )}
+
         </form>
       </div>
     </div>

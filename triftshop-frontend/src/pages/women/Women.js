@@ -78,44 +78,6 @@ const WomenProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
 
-
-
-
-  const handleSendMessage = async () => {
-    const senderId = localStorage.getItem('userId');
-    const receiverId = selectedProduct?.userId;
-    const token = localStorage.getItem('token');
-
-    console.log('🔑 Token from localStorage:', token); // 🛠 Debugging tokena
-
-    if (!message.trim()) return alert('Please enter a message.');
-    if (!senderId || !receiverId) return alert('Sender or receiver not found.');
-    if (!token) return alert('You must be logged in.');
-
-    try {
-      console.log('📩 Sending message with:', { senderId, receiverId, productId: selectedProduct._id, content: message });
-
-      const response = await axios.post(
-        'http://localhost:5000/api/messages/sendMessage',
-        { senderId, receiverId, productId: selectedProduct._id, content: message },
-        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
-      );
-
-      console.log('✅ Message sent successfully:', response.data);
-      setIsMessageModalOpen(false);
-      setMessage('');
-      alert('Message sent successfully!');
-    } catch (error) {
-      console.error('🔥 Request Error:', error.response?.data || error);
-      alert('Something went wrong. Try again.');
-    }
-  };
-
-
-
-
-
-
   const handleViewProduct = (product) => {
     console.log('Selected product:', product); // Debug the product data
     setIsMessageModalOpen(false); // Zatvori modal za Contact Seller
@@ -212,11 +174,21 @@ const WomenProduct = () => {
             backgroundColor: '#fff'
           }}>
             <option value="">All</option>
-            <option value="t-shirt">Men's T-Shirt</option>
+            <option value="T-shirt">T-Shirt</option>
             <option value="Suits">Suits</option>
-            <option value="Pants">Pants</option>
-            <option value="Jackets">Jackets</option>
-            <option value="Sweaters">Sweaters</option>
+            <option value="Shorts">Shorts</option>
+            <option value="Jumpers">Jumpers</option>
+            <option value="Skirts">Skirts</option>
+            <option value="Sweater">Sweater</option>
+            <option value="Dress">Dress</option>
+            <option value="Boots">Boots</option>
+            <option value="Sandals">Sandals</option>
+            <option value="Heels">Heels</option>
+            <option value="Sneakers">Sneakers</option>
+            <option value="Flats">Flats</option>
+            <option value="Face Cream">Face Cream</option>
+            <option value="Perfume">Perfume</option>
+            <option value="Nail Care">Nail Care</option>
           </select>
         </div>
 

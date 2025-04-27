@@ -12,7 +12,7 @@
   /* Title Styling */
   .services-title {
     font-size: 2.5rem;
-    color: #ff6fa5;
+    color: #242223;
     margin-bottom: 10px;
   }
   
@@ -32,10 +32,10 @@
   
   /* Individual Service Card */
   .service-card {
-    background-color: #ff6fa4bb;
+    background-color: #fdf6fa;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.541);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   

@@ -165,6 +165,25 @@ const Forum = () => {
             </div>
           )}
         </div>
+        <div className="question-container">
+          <button
+            className="question-button"
+            onClick={() => toggleQuestion(9)}
+          >
+            How can I reset my password?
+            <span
+              className={`arrow-icon ${activeQuestion === 9 ? 'rotated' : ''}`}
+            >
+              ➤
+            </span>
+          </button>
+          {activeQuestion === 9 && (
+            <div className={`answer ${activeQuestion === 9 ? 'active' : ''}`}>
+              If you have forgotten your password, simply go to the login page and click on the "Forgot Password?" link. Follow the instructions to reset your password via the email associated with your account. If you encounter any issues, feel free to reach out to our customer support for further assistance.
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   );
